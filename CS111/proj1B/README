@@ -1,0 +1,17 @@
+NAME: Nikola Samardzic
+EMAIL: nikola.s@ucla.edu
+ID: 904799099
+
+lab1b-904799099.tar.gz:
+    - README: This README
+    - lab1b-client.c: The source code for the client
+    - lab1b-server.c: The source code for the server
+    - lab1b-client: The executable for the client
+    - lab1b-server: The executable for the server
+    - Makefile: the makefile of the whole project
+    - clean: remove all files/directories previously created by make commands
+    - dist: create the complete tar.gz file
+    - main: create client and server executables from sources
+    - server: create server executable from source
+    - client: create client executable from source
+    - my.key: contains the encryption key

@@ -1,0 +1,93 @@
+LAB:
+
+- I found the commit SHA by entering
+
+    	  emacs git-log.txt
+    	  C-s like this RET
+
+- I got the commit: 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f
+
+- Created patch
+
+  	  git format-patch 62ca21c8c1a5aa3488589dcb191a4ef04ae9ed4f  --stdout > quote-patch.txt
+
+- Checkout version 3.0:
+
+  	  git checkout tags/v3.0
+
+- Patching:
+
+	  patch -p1 < quote-patch.txt
+
+  I had to press a pair of RETURN keys 3 times to skip some patches we will
+  take care of later.
+  
+- The modified files that are not .c files are:
+	modified:   NEWS
+	modified:   README
+	modified:   TODO
+	modified:   doc/diagmeet.note
+	modified:   ms/config.bat
+	modified:   ms/config.site
+	modified:   po/en.po
+	modified:   src/analyze.c
+	modified:   src/cmp.c
+	modified:   src/context.c
+	modified:   src/diff.c
+	modified:   src/diff.h
+	modified:   src/diff3.c
+	modified:   src/dir.c
+	modified:   src/ifdef.c
+	modified:   src/io.c
+	modified:   src/sdiff.c
+	modified:   src/side.c
+	modified:   src/system.h
+	modified:   src/util.c
+	modified:   tests/help-version
+	
+- I entered these files and done vc-revert on them.
+
+- For the .c files we need to go through them using first vc-diff (C-x v =).
+- Then we need to revert all the hunks in .c files that aren't the character
+  string constants (using C-u C-c C-a).
+
+- The two .c files are:
+	modified:   src/diff.c
+	modified:   src/sdiff.c
+
+- We go through them. Some changes are related to changing ` into ' inside comments
+  In order to make our patch easy to audit we will remove these changes (C-u C-c C-a)
+  since they do not change the performance of the program.
+
+- I see a couple ./*.c.rej files. I use emacs
+
+    	emacs src/diff.c.rej src/diff.c
+
+- Compare the files and change all the non-comment grave accents by looking
+through the .rej file
+
+- I also had to modify one line in src/diff3.c because there was a .rej file
+  associated to it
+
+- Removing untracked files:
+
+  	   git clean -f
+
+- Create patch:
+
+  	 git diff > quote-3.0-patch.txt
+
+- On lnxsrv07 I ran followed instruction to make diff and rand
+
+	./src/diff . -
+
+from the diffutils directory. The output was
+
+	./src/diff: cannot compare '-' to a directory
+
+which is good!
+
+- There are differences but they are innocuous. SEAS net’s diff displays only a 
+	limited number of chars per line while mine displays to whole line.
+	That is the only difference I noticed.
+

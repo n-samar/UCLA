@@ -1,0 +1,35 @@
+		       __________________________
+
+			CS 111 PROJECT 3B README
+
+			       Fall 2017
+		       __________________________
+
+
+NAME: Nikola Samardzic
+EMAIL: nikola.s@ucla.edu
+ID: 904799099
+
+
+1 Description of submitted files
+================================
+
+1.1 README
+~~~~~~~~~~
+
+  - This README
+
+
+1.2 lab3b.py
+~~~~~~~~~~~~
+
+  - Source code to executable
+
+
+1.3 Makefile
+~~~~~~~~~~~~
+
+  - default: The default option. Creates the bash script lab3b that
+    executes lab3b.py comforming to the specification.
+  - clean: delete all files created by make.
+  - dist: creates submission tarball.

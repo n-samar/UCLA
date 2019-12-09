@@ -1,0 +1,504 @@
+PROJECT 3 REPORT
+
+1.
+
+Structure:
+Actor
+	Pebble
+	EnergyHolder
+		AntHill
+		Food
+		Pheromone
+		Damager
+			Pool
+			Poison
+		Insect
+			Ant
+			Grasshopper
+				BabyGrasshopper
+				AdultGrasshopper
+
+The StudentWorld class:
+
+    - std::string format(int ticks, int* anthills, int winning):
+    A helper function for formating the display.
+
+    - askActorsToDoSomething():
+    Call doSomething() on every actor in the container. This was implemented
+    just so I would have cleaner code and a shorter move() method.
+
+    - updateContainer():
+    Deletes all dead actors from container. Updates positions in container for
+    all actors that have moved. This is called by move().
+
+    - int compileBugs():
+    Compiles all the .bug files that run the ants. Sets the resulting compiler
+    values inside m_compArr[].
+
+    - Pheromone* getPheromoneAt(int x, int y, int typeId):
+    returns a pheromone pointer to a pheromone of colony number typeId at
+    (x, y).
+
+    - void addActor(Actor* actor):
+    Add actor to STL container of StudentWorld.
+
+    - void readActors():
+    reads all actors in field txt file into STL container and creates them
+    using the keyword 'new'. This method is called by init().
+
+    - setDisplayText():
+    sets the text on top of screen
+
+    - void getWinner():
+    sets the m_winner data member to the index of the colony that would win
+    if the game would finish in that moment, or -1 if none would win.
+
+    - void getPostWithinRadius(int &x, int &y, int rad):
+    returns a position on the field that is within the circle centered at
+    (x, y) and has radius rad. This is used by the AdultGrasshopper class.
+
+    - void addAnt(int colNum):
+    add an ant to ant count array with index colNum
+
+    - void decAnt(int colNum):
+    was part of a previous feature. Could be implemented to proclaim a winner
+    in a different way (last ant standing type of thing).
+
+    - init(), move(), cleanUp() are specified in spec.
+
+    - bool smellDanger
+
+    - void addActor(Actor* actor):
+    adds a specified Actor object to the field. This method is used by the init
+    function of StudentWorld, as well as the giveBirth() function of the
+    AntHill class which creates Ant objects.
+
+    - template<class T>
+    T* getAt(int x, int y, Actor* me = nullptr):
+    returns the first T* object element in our STL container at position
+    (x, y). If none exist, nullptr is returned.
+    
+    - template<class T>
+      std::list<Actor*>::iterator getAt(int x, int y,
+             typename std::list<Actor*>::iterator it,
+                                 Actor* me = nullptr):
+    returns the iterator to first object of type T* after and including the
+    elements of a vector of Actor* pointed to by it. The vector is the map
+    value for the key (x, y) which represents all the Actors at position
+    (x, y). The map used is the container m_mapActor of type
+    map::<pair<int, int>, vector<Actor*>>.
+
+    - template<class T>
+    std::vector<T*> getVector(int x, int y, Actor* me = nullptr):
+    returns a vector of all objects of type T* within the vector of the
+    container representing all Actors at position (x, y).
+
+The Actor class:
+
+    - Constructor:
+    We need a pointer to the StudentWorld object in which the Actor is in.
+    This has proven necessary, and is used often with actors.
+
+    - StudentWorld* getWorld():
+    returns the pointer to the student world the actor is in.
+
+    - virtual bool doSomething() = 0;
+    Made this pure virtual because I want to make sure each Actor has a
+    conciously and explicitly implemented doSomething() method (even
+    if the actor does nothing).
+    Why is it of type bool? This is useful for knowing if a base-class
+    version's doSomething() does something that causes the derived-class'
+    doSomething() to return immedietly without processing anything in it.
+    Often, I will call the base-class doSomething() at the beggining of
+    the derived class' doSomething() and I need to know if I should return
+    after that. If I should return, doSomething() returns true, else false.
+
+    - virtual void kill():
+    Sets actor's state to dead. This will serve as an indication to
+    StudentWorld that the actor should be removed from the game and
+    container. Only the Actor can kill() itself, which is why it is
+    protected.
+
+The EnergyHolder class:
+
+    - Constructor:
+    Each EnergyHolder has a colony number. If the EnergyHolder is an Ant,
+    AntHill, or Pheromone the m_colonyNum will be set to its appropriate
+    value. If it is a Grasshopper, this value will be 4. If it is anything
+    else it will be 5.
+    Each EnergyHolder keeps track of its m_hitPoints. Hit points are increased
+    when an EnergyHolder eats, and decreased with time, damage, poison ...
+
+    - getColonyNum():
+    Returns colony number of object. Used to identify enemies (enemies have
+    different colony numbers)
+
+    - virtual bool doSomething():
+    Implements Actor's pure virtual doSomething().
+    This doSomething() implements features common to all of its subclasses.
+    These include:
+    	  1. decreasing the energy (hit points)
+	  2. kill if has no energy and return true
+	  3. return false if this is reached
+
+    - void dropFood(int amount):
+    Only the EnergyHolder can allow itself to drop food. This is why this
+    method is protected.
+    This method will add food to the current position of the object. If a
+    food object already exists at that spot, we add more food to it. If
+    there is no food on the spot, we create a new food object.
+
+    - virtual bool eat(int cap):
+    The object tries to eat a cap amount of food from a food object at
+    its own location. If it eats at least one unit of food, the function
+    will return true, else false. I implemented eating as a two step process.
+    First, we pick food up from the food object and then, we eat it. All
+    object aside from ants will just call EnergyHolder's eat and pickUpFood()
+    will be called within. However, an Ant will have an overriden eat, and
+    will also need to call pickUpFood() explicitly.
+
+    - virtual int pickUpFood(int cap):
+    Attempts to take food from a food object at the same position as the
+    EnergyHolder. Look at EnergyHolder::eat() for more detail.
+
+    - void dropFood(int amount):
+    This is called when a player dies and must turn itself into a food object.
+
+    - void setHitPoints(int val):
+    set EnergyHolder's hit points to val.
+
+    - void getHitPoints()P
+    get EnergyHolder's hit points.
+
+The Insect class:
+    
+    - Constructor:
+    We need everything we need to pass to EnergyHolder. There are additional
+    private data members:
+    	    1. bool m_stunend
+	       True if Insect is stunned.
+	    2. bool m_bitten
+	       True if Insect has been bitten.
+	    3. bool m_blocked
+	       True if Insect was blocked from moving.
+    	    4. int m_sleepTicks
+	       Number of ticks left that the Insect is going to spend doing
+	       nothing.
+	    5. int m_distLeft
+	       The number of steps left in the current Insect's direction
+
+    - virtual bool bite():
+    Gets an enemy using getEnemyAt() (which is implemented seperately for
+    each Insect) and bites it. Only insects can decide wether to bite or not.
+    Therefore, the method is protected.
+
+    - virtual void kill():
+    Specifies the common way all insects die:
+    	    1. Call Actor's kill()
+	    2. Add 100 units of food to the square
+    Derived classes will cal Insect's kill() before executing their own.
+
+    - All other protected functions are self-explanatory and trivial. They are
+    protected because we want all Insects to be able to change their states,
+    but nobody else.
+
+The AntHill class:
+
+    - Constructor:
+    We need everything we need for base class construction AND a compiler
+    pointer, which will be passed to newly born Ants.
+
+    - virtual bool doSomething():
+      	      1. Call EnergyHolder's doSomething and return true if it returns
+	      	 true
+	      2. Try to eat and return if succesfull
+	      3. If enough energy to give birth, do it and reduce AntHill's
+	         energy by appropriate amount.
+	      4. Return false if this is reached.
+
+    - void giveBirth():
+      This method is private because only an AntHill can decide to give birth.
+      It produces a new Ant of the same type as the AntHill at the same
+      position as the anthill.
+
+The Ant class:
+
+    - bool onMyAnthill():
+    returns true if this Ant is currently on his own Anthill. False otherwise
+
+    - virtual Insect* getEnemyAt(int x, int y):
+    returns a pointer to either an Ant at (x, y) of a different type than
+    this, or a Grasshopper at (x, y). If there are no Ants of other types
+    or Grasshoppers at (x, y) the function returns nullptr.
+
+    - Private data members:
+      	      1. int m_instructionPtr:
+	      Stores the line in the .bug code that is next to be executed.
+	      2. m_randNum:
+	      Stores a random number gotten by a .bug code call
+	      3. m_foodReserve:
+	      Ants can store food before they eat it. This variable
+	      tells us how many units of food the ant has stored.
+
+    - virtual bool doSomething():
+      	      1. Call Insect's doSomething(). If it returns true, then
+	      return true
+	      2. Execute commands from source file until 10 are executed
+	      or one of them changes the state of the game
+	      3. return false
+
+    - bool dangerous(int x, int y):
+    If there is poison or an enemy at (x, y) return true, else false.
+    Only tha Ant checks for danger. We don't want other classes confusing
+    dangerous() with their own, so we make this private.
+
+    - bool runCommand(const Compiler::Command& c):
+    runs the next command in the .bug file as specified by the spec. The next
+    command will be at the line pointed to by m_instruvtionPtr.
+
+    - bool emitPheromone():
+    Add a pheromone at current position. If there is already a pheromone
+    object of the same type add strength to it.
+
+    - virtual bool eat():
+    Ants can only eat the food they have in their reserve. This method is
+    adapted for that purpose. If the ant cannot eat because the reserve is
+    empty we return false, else true.
+
+    - virtual bool pickUpFood():
+    Ants pickUpFood() and store it in their reserve. A little different than
+    what other EnergyHolders do.
+
+    - virtual void dropFood():
+    Ants drop food when instructed by the .bug commands, not only when they
+    die. This is accounted for in this method. When an ant dies we will call
+    EnergyHolder's dropFood() instead.
+
+    - void kill():
+    Explicitly calls the right dropFood() method. Also makes sure to inform
+    StudentWorld of its death properly. Calls Insect's kill() at end.
+
+    - void rotateClockwise():
+    Change the current director of Ant 90 degrees clockwise.
+
+    - void rotateCounterClockwise():
+    Similar to rotateClockwise().
+
+    - All the private members are private since I do not want them to be
+    called or modified outside ant. Most of them are used only to help
+    with executing code commands, and nobody should interfere with that
+    outside the Ant world.
+
+The Food class:
+
+    - Constructor:
+    Everything needed for EnergyHolder AND a bool value that represents
+    whether the food item was created initialy by the field txt file or by
+    an insect death or Ant's dropFood(). Set its hit points to the initial
+    value or the energy in Insect corpses if it was due to insect death.
+
+    - bool doSomething():
+    return false. It does nothing.
+
+    - void add(int amount):
+    Increase food units in food object by the specified amount.
+
+The Pheromone class:
+
+    - Construction:
+    Everything we need for EnergyHolder. Set hit points to specified initial
+    value.
+
+    - void add(int amount):
+    Add a specified amount of pheromone.
+
+The Grasshopper class:
+
+    - Constructor:
+    Everything needed for Insect constructor. Hit points and type id
+    depend on the base class
+
+    - virtual Insect* getEnemyAt(int x, int y):
+    get any insect not equal to this at (x, y).
+
+    - virtual bool doSomething():
+    Do the last couple of steps for both Adult and Baby Grasshoppers
+       	   1. Try and eat. Sleep w/p 50%
+	   2. If Grasshopper is done stepping in current direction then
+	   choose a new one.
+	   3. if it can't move set the remaining distance to zero.
+	   Else, decrement the remaining distance.
+	   4. set the grasshopper to sleep for 2 ticks.
+	   5. return false
+
+    - virtual bool eat():
+    Just call EnergyHolder's eat with cap at the bite size of a grasshopper.
+    This method is private because only a Grasshopper should be able to decide
+    whether it eats or not.
+
+The BabyGrasshopper class:
+
+    - We know which type ID and hit point value to specify to the base
+    Grasshopper class.
+
+    - virtual bool doSomething():
+      	      1. Call insect's doSomething() which performs actions common to
+	      all insects
+	      2. Morph into an Adult if enough hit points.
+	      3. Call grasshopper's doSomething() which executes a couple of
+	      last commands that will be common to both Babies and Adults
+	      4. return false
+
+The AdultGrasshopper class:
+
+    - Constructor:
+    We know which ID and initial hit points to pass to the base Grasshopper
+    class.
+    - virtual bool zap(int amt):
+    Calls Insect's zap, but adds the ability of the Adult Grasshopper to
+    retaliate.
+    - virtual void stun():
+    Overwritten to do nothing because AdultGrasshoppers cannot be stunned.
+    - virutal void poison():
+    Overwritten to do nothing because AdultGrasshoppers cannot be poisoned.
+    - virtual bool doSomething():
+      	      1. Call Insect's doSomething()
+	      2. Try to bite() w/p 50%
+	      3. Jump w/p 10%
+	      4. Call Grasshopper's doSomething() to execute parts common to
+	      both Adults and Babies.
+The Pebble class:
+
+    - Constructor:
+    Everything needed for Actor.
+
+    - virtual bool doSomething():
+    Does nothing.
+
+The Damager class:
+
+    - Constructor:
+    Similar to the Grasshopper (which also has derived classes) the Damager
+    has a constructor that is needed to initialize the Actor.
+
+    - Private data members:
+    std::vector<Insect*> m_damagedInsects - this member keeps track of all
+    of the insects that have been damaged in the previous move. This is used
+    to make sure objects are not restunned and repoisoned before they leave
+    the square where the Damager was.
+    The spec is unclear is to whether Insects should be poissoned repeatedly
+    even if they don't leave the Poison field. I implemented it so that this
+    does not happen since it is more convinient for the Pool object.
+
+    - virtual void damage(Insect* i) = 0;
+    This function is implemented in the derived Pool and Poison classes. The
+    idea is for those classes to respectively stun or poison the Insect pointed
+    to by i.
+
+    - virtual bool doSomething():
+    Go through all the Insects that share my position and damage() them if they
+    are not in the m_damagedInsects vector.
+
+The Pool class:
+
+    - Constructor:
+    Self-explanatory (similar to BabyGrasshopper)
+
+    - virtual void damage(Insect* i):
+    stuns the Insect pointed to by i. Read Damager's damage for more detail.
+
+The Poison class:
+
+    - Constructor:
+    Self-explanatory (similar to BabyGrasshopper)
+
+    - virtual void damage(Insect* i):
+    poisons the Insect pointed to by i. Read Damager's damage for more detail.
+
+Approach to problems not cleared up in spec:
+
+    - If there is more than 99 ants in a colony we are going to have a problem
+    displaying that on the top screen since we only allow for 2 characters per
+    colony. I solved this by putting a cap at 99 for the display. I still keep
+    track of the actual amount of ants, but the display itself is caped at 99.
+
+2. As far as I know, my code is complete. I have made a substantial effort
+to eliminate all bugs, but I cannot guarantee that that is the case.
+
+3. Some issues I stated in part 1 of the report. Most have been cleared up
+through email or conversation with professor Smallberg.
+
+4.
+   Testing StudentWorld:
+   I have not done any specific testing of the StudentWorld class. However,
+   I have discovered many bugs through performing tests on other classes.
+   Since StudentWorld is the logical core of the game, all logical fallacies
+   are very glarring and the best way to test for them is by testing everything
+   else.
+   
+   Testing Ants:
+   I have written a couple of different .bug files that ensure all possible
+   contigencies of my runCommand() function will be explored. I also tested
+   the damaging properties of ants (and how they recieve damage) by looking
+   at fields that have a lot of antagonistic ants close by fortified by
+   pebbles. Also I would put grasshoppers with ants in a pebble fortress
+   to check how they behave.
+   I have tested the food eating properties just by looking at fortresses
+   with food and ants.
+   I would also put ants in a fortress with poison and/or water to see if they
+   were stunned properly.
+
+   Testing BabyGrasshoppers:
+   BabyGrasshoppers were tested by putting them into water and/or poison
+   fortresses to ensure they were poisoned and stunned properly.
+   I would also put them with ants that bite. To see if grasshoppers would die
+   properly.
+   Put them with a lot of food around to see if they turn into adults properly.
+   Starve them in an empty fortress to make sure they live as long as they
+   should.
+
+   Testing AdultGrasshoppers:
+   Create them by putting babies around food. If I put babies around not a lot
+   of food then I can test to see if the adult dies when it should.
+   Put it around food to see eating habits.
+   Put it around ants to see if it bites them.
+   Put it around poison and/or water to see if it ignores it.
+   Put one baby with one food item surrounded by a field full of pebbles. This
+   ensures the later created adult will not be able to jump, which lets us test
+   how it behaves in that situation.
+
+   Testing AntHills:
+   Put them around food with an ant colony that brings back food. Test to see
+   if AntHill eats and gives birth properly using the debugger and freeze
+   feature.
+   Starve an AntHill to see if it dies when it should.
+   See if it produces 5 ants at beggining.
+   Put a lot of food around so that ants would bring more than the AntHill's
+   bite size. This way we test to see if the ant hill has a proper cap to
+   eating.
+   Let the anthill die to see if ants and pheromones have strange pointer
+   dependencies to anthills.
+
+   Testing Pools:
+   Tested throughout all other tests where we test interaction with Insects.
+
+   Testing Poison:
+   Tested throughout all other tests where we test interaction with Insects.
+
+   Testing Pebbles:
+   Put different insects around pebbles and see if they go through them.
+   Put AdultGrasshopper in a field filled with only pebbles, see if it
+   jumps on top of them (it shouldn't).
+
+   Testing Food:
+   Food is tested in interaction with other elements. I should add that I
+   was checking through the debugger if the adequate amount of food was
+   created upon death and upon starting the simulation.
+
+   Testing Pheromone:
+   Let the ants put pheromones everywhere. Track to see if pheromone amount
+   is above the cap for any square using asserts. Make sure the pheromones
+   die with time.
+   Make ants follow their pheromones, check if that is properly implemented.
+   Assert that there are no two pheromones of the same type somewhere
+

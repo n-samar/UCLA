@@ -1,0 +1,148 @@
+
+// The main.cpp you can use for testing will replace this file soon.
+#include "MyMap.h"
+#include "provided.h"
+#include "support.h"
+#include <cassert>
+#include <iostream>
+#include <stdlib.h>		// TODO: Delete this
+#include <map>			// TODO: Delete this
+#include <time.h>			// TODO: Delete this
+#include <ctime>
+
+using namespace std;
+
+const int MAP_TEST_SIZE 	 = 100000;
+const int MAP_TEST_VAR_RANGE = 200000;
+
+int main()
+{
+	clock_t begin = clock();
+
+	// MYMAP
+	/*MyMap<int, int> test;
+	map<int, int> checker;
+
+	 srand (time(NULL));
+
+	for(int i = 0; i < MAP_TEST_SIZE; i++)
+	{
+		int addMeKey = rand() % MAP_TEST_VAR_RANGE;
+		int addMeVal = rand() % MAP_TEST_VAR_RANGE;
+
+		switch(rand() % 2)
+		{
+			case 0:
+				// cout << "inserting" << endl;
+				checker[addMeKey] = addMeVal;
+				test.associate(addMeKey, addMeVal);
+				break;
+			case 1:
+				// cout << "finding" << endl;
+				if(test.find(addMeKey) != nullptr)
+				{
+					assert(*(test.find(addMeKey)) == checker[addMeKey]);
+				}else assert(checker.find(addMeKey) == checker.end());
+				break;
+		}
+
+		assert(checker.size() == test.size());
+		// cou.printMe();
+		// cout << endl;
+	}*/
+
+
+	// MAPLOADER
+	/*
+	MapLoader ml;
+	ml.load("./mapdata.txt");
+
+	cerr << "MAP LOADER: " << double(clock() - begin)/ CLOCKS_PER_SEC << " seconds."<< endl;
+	clock_t endMapLoader = clock();
+
+
+	SegmentMapper sm;
+	sm.init(ml);
+	cerr << "SEGMENT MAPPER time: " << double(clock() - endMapLoader)/ CLOCKS_PER_SEC << " seconds."<< endl;
+	// SEGMENT MAPPER
+	clock_t endSegMapper = clock();
+
+	AttractionMapper am;
+	am.init(ml);
+	cerr << "ATTRACTION MAPPER time: " << double(clock() - endSegMapper)/ CLOCKS_PER_SEC << " seconds."<< endl;
+
+	
+	StreetSegment seg;
+	GeoCoord gc;
+	for(int i = 0; i < ml.getNumSegments(); i++)
+	{
+		ml.getSegment(i, seg);
+		// Segment Mapper
+		vector<StreetSegment> ss = sm.getSegments(seg.segment.start);
+		
+	}
+	*/
+
+	// NAVIGATOR
+	
+	Navigator nav;
+	MapLoader ml;
+	ml.load("./mapdata.txt");
+	nav.loadMapData("./mapdata.txt");
+	for(int i = 0; i < ml.getNumSegments(); i++)
+	{
+		StreetSegment seg1, seg2;
+		ml.getSegment(i, seg1);
+		for(int j = 0; j < ml.getNumSegments(); j++)
+		{
+			ml.getSegment(j, seg2);
+			for(int x = 0; x < seg1.attractions.size(); x++)
+				for(int y = 0; y < seg2.attractions.size(); y++)
+				{
+					vector<NavSegment> directions;
+					cerr << endl<<"Calculating route"<<endl
+					 <<"\tfrom: "<< seg1.attractions[x].name <<endl<<
+					 "\tto: "<< seg2.attractions[y].name<< endl;
+					switch(nav.navigate(seg1.attractions[x].name, seg2.attractions[y].name, directions))
+					{
+						case NAV_BAD_SOURCE:
+							cerr << "Bad source" << endl;
+							break;
+						case NAV_BAD_DESTINATION:
+							cerr << "Bad destination" << endl;
+							break;
+						case NAV_NO_ROUTE:
+							cerr << "No route: " << seg1.attractions[x].name <<", "<< seg2.attractions[y].name<< endl;
+							break;
+						case NAV_SUCCESS:
+							cerr << endl << endl << "SUCCESS:" << endl;
+							double distToTurn = 0;
+							for(int i = 0; i < directions.size(); i++)
+							{
+					
+								if(directions[i].m_command == NavSegment::PROCEED)
+								{
+									distToTurn+=directions[i].m_distance;
+									//cerr << "Proceed: " << directions[i].m_distance << endl;
+									//cerr << directions[i].m_geoSegment.start.latitude<< ", "<< directions[i].m_geoSegment.start.longitude 
+									//<<"  "<< directions[i].m_geoSegment.end.latitude<< ", "<< directions[i].m_geoSegment.end.longitude<< endl;
+								}
+								else
+								{
+									cerr << "Proceed for " << distToTurn << " miles.\n";
+									distToTurn = 0;
+									cerr << "Turn "<< directions[i].m_direction <<" onto: ";
+								cerr << directions[i].m_streetName <<endl;
+								}
+
+							}
+							cerr << "Proceed for " << distToTurn << " miles.\n";
+							cerr << "You have reached your destination!" << endl;
+							break;
+					}
+			}
+		}
+	}
+	clock_t end = clock();
+	cerr << "Passed all test cases. \nTotal time: " << double(end - begin) / CLOCKS_PER_SEC<< " seconds." <<  endl;
+}

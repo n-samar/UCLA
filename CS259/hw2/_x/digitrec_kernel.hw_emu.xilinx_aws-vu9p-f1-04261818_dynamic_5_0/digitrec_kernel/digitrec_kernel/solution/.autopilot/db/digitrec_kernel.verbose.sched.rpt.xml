@@ -1,0 +1,49 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'digitrec_kernel'" level="0">
+<item name = "Date">Sat Oct 27 03:57:00 2018
+</item>
+<item name = "Version">2018.2_AR71275_op (Build 2258646 on Thu Jun 14 20:25:20 MDT 2018)</item>
+<item name = "Project">digitrec_kernel</item>
+<item name = "Solution">solution</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcvu9p-flgb2104-2-i</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00, 2.920, 1.08</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">414077, 414077, 414077, 414077, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- init_L">44, 44, 16, 1, 1, 30, yes</column>
+<column name="- diff_L">18001, 18001, 3, 1, 1, 18000, yes</column>
+<column name="- dis_L">18003, 18003, 5, 1, 1, 18000, yes</column>
+<column name="- update_L">378015, 378015, 37, 21, 1, 18000, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

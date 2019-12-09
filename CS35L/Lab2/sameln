@@ -1,0 +1,31 @@
+#! /bin/sh
+# sameln
+
+ls "$1" | sort >./.TEMP.txt    # read a sorted list of files into file
+COUNTER=0                      # counters keep help exclude double
+                               # comparison
+IFS=$'\n'                      # read line by line in the for
+pather="$1/"                   # specify path variable
+for x in $(cat ./.TEMP.txt);   # loop through all file names
+do
+    COUNTER=$[COUNTER + 1]     # iterate counter
+    COUNTER2=0                 # redefine COUNTER2
+    x="$pather$x"              # set x to appropriate destination
+    IFS=$'\n'
+    for y in $(cat ./.TEMP.txt);
+    do
+	y="$pather$y"
+	array=("$x" "$y")      # array helps us take care of wildcards
+	COUNTER2=$[COUNTER2 + 1]
+
+	# test for repetition (counters), if both are reg. files and compare
+	# their content. Pass only if they are the same and regular.
+	if [ $COUNTER -lt $COUNTER2 ] && \
+	       [ -f ${array[0]} ] && \
+	       [ -f ${array[1]} ] && \
+	       cmp -s ${array[0]} ${array[1]}; then
+	    rm ${array[1]}     # remove lexicographicaly older file
+	    ln ${array[0]} ${array[1]}  # create hard link
+	fi
+      done 
+done

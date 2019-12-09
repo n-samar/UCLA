@@ -1,0 +1,50 @@
+1. I downloaded the coreutils localy and sent it to the lnxsrv using scp.
+
+2. Extracting Coreutils file:
+	   tar -xvzf core*
+
+	   Configure & make:
+	   	     cd core*
+		     ./configure --prefix=$HOME/Desktop/testCore
+		     make
+		     make install
+
+3. Set locale:
+	LC_ALL=en_US.UTF-8
+   Recreate bug (from Desktop):
+	./testCore/bin/ls -l
+
+4. Patching: I created a file named patchfile in emacs within the same file as
+	  coreutils' ls. Then I ran within testCore/bin/
+	  patch  < patchfile
+
+5. Running the make command creates the following output:
+   	    CC     dd.o
+	    CCLD   dd
+  	    CC     ls.o
+  	    CCLD   dir
+  	    CCLD   vdir
+  	    CCLD   ls
+   Also, this batch is outputed:
+   	    GEN    dir.1
+  	    GEN    vdir.1
+  	    GEN    ls.1
+   I assume this output specifies which files are recompiled. Clearly a new
+   object file for ls has to be created (CCLD ls) and linked (CC ls.o). I
+   assume dd, dir, and vdir depend on ls implementation, which is why they
+   also have to be recompiled.
+   
+6. When running make install we do this:
+   	make install DESTDIR=$HOME/Desktop/testCore2
+   in order not to override the previos installation (in testCore).
+   Within the home directory we can test the patch:
+	  ./Desktop/testCore2/bin/ls -l
+   We see then that output is properly formated.
+   To test the output on year-old files we will use
+      	   touch -d '1 May 2005 10:22' file1
+   which will mark file1 as last modified in 2005. The output is of the form:
+   	   -rw-r--r--  1 nikola csugrad   0 May  1  2005 file1
+   Files modified this year are displayed as
+           -rw-r--r-- 1 nikola csugrad    0 Jan 24 12:00 license
+   Therefore, files modified more than a year ago will have the year in place of the
+   minute and hour of their last modification. 

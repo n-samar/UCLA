@@ -1,0 +1,7 @@
+2.72.txt
+
+A. The C standard specifies that an operation on an unsigned and signed int
+   will treat both values and the result as unsigned. Therefore, it will
+   always be >= 0.
+
+B. Change to if (maxbytes >= 0 && maxbytes >= sizeof(val))

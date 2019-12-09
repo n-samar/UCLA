@@ -1,0 +1,27 @@
+			   __________________
+
+			      TESTOVF.TXT
+
+			    Nikola Samardzic
+			   __________________
+
+
+
+
+
+1 Examine integer overflow handling
+===================================
+
+  1. The assembly code compiled with only -O2: The compiler will
+     recognize that we are comparing n with a number bigger than
+     n. Therefore, the assembly code sets %rax to 0 using xor %rax %rax,
+     and returns.
+  2. The assembly code compiled with -O2 and -fwrapv: This assembly code
+     actually adds the two numbers together and compares the result with
+     the value of n which is stored in %rdi. Then with setl %al the
+     return value is set, and the function returns.
+  3. The assembly code compiled with -O2 and -fsanitize=undefined: After
+     the addition (addq %rdx, %rbp) the assembly jumps a portion of code
+     that calls __ubsan_handle_add_overflow which most probably checks
+     for addition overflow This is the effect of -fsantize=undefined, it
+     will check for overflow by calling an extra function.

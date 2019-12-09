@@ -1,0 +1,40 @@
+2.82.txt
+
+A. Not always true. For x = MIN_INT we have that -x returns MIN_INT (it is its
+   own inverse). MIN_INT is not bigger than any other int in C (and is
+   therefore smaller than all of them). This means x < y and -x < -y (not
+   -x>-y).
+
+B. Always true. Left-shifting is equivalent to multiplying by power of two in
+   two's complement arithmetic. Addition and subtraction form an Abelian Group,
+   so this works fine.
+
+C. This is always true. ~x + ~y + 1 = ~(x+y) equivalent to ~x + 1 + ~y + 1 =
+   = ~(x+y)+1 equivalent to -x + (-y) = -(x+y) equivalent to -(x+y) = -(x+y).
+   (here I used -, + as defined so that it gives an Abelian group with two's
+   complement)
+
+D. The operations of subtraction and unary negation are equivalent in memory
+   with signed and unsigned variables. The way C interprets the bits in memory
+   does however depend on the type (signed/unsigned) of the variables.
+   The RHS here is cast to unsigned and the LHS is unsigned, so this is always
+   true.
+
+E. Always true. If x has non-zero bits in one of the leftmost two positions
+   then (x >> 2) << 2 will delete them. If x is negative then its two's
+   complement representation is going to be smaller if we delete the leftmost
+   two numbers. If x is positive then its two's complement representation will
+   be smaller if we delete the leftmost two numbers as well.
+   In other cases (x >> 2) << 2 is equal to x.
+
+F. Always true. x >> 1 performs an arithemtic shift since x is signed.
+   ux >> 1 performs a logical shift on the same bits (since ux is unsigned).
+   The (ux & (-1 << 31)) part will produce 100...0 if the leading bit in x
+   (and ux) is a 1, and 0...000 otherwise. This means it will add the sign
+   bit to the logical shift making it equivalent to the arithmetic shift.
+
+G. 127 = 0...00111111 in binary. Therefore, this mask works fine for positive
+   values. Does not work for negative. Take x = -1 = 111...1. x & 127 returns
+   127. x % 128 is defined in C to be such that
+   128 * (x / 128) + x % 128 == x. This means -1 % 128 = -1 - 128 * 0 = -1
+   which is not equal to 127.

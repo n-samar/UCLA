@@ -1,0 +1,1448 @@
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Brentwood Country Mart
+
+
+SUCCESS:
+Proceed for 0 miles.
+You have reached your destination! Total distance: 0
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Robertson Playground
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.593851 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.598601 miles.
+Turn right onto: Pontius Avenue
+Proceed for 0.105916 miles.
+Turn left onto: Massachusetts Avenue
+Proceed for 0.0978542 miles.
+Turn right onto: South Bentley Avenue
+Proceed for 0.639242 miles.
+Turn left onto: Mississippi Avenue
+Proceed for 0.752416 miles.
+Turn right onto: Manning Avenue
+Proceed for 0.303003 miles.
+Turn left onto: Tennessee Avenue
+Proceed for 0.123981 miles.
+Turn right onto: Prosser Avenue
+Proceed for 0.0503862 miles.
+Turn left onto: Ilona Avenue
+Proceed for 0.557765 miles.
+Turn right onto: Fox Hills Drive
+Proceed for 0.126769 miles.
+Turn left onto: West Pico Boulevard
+Proceed for 0.170537 miles.
+Turn left onto: Pico Boulevard
+Proceed for 0.559453 miles.
+Turn right onto: South Roxbury Drive
+Proceed for 0.149758 miles.
+Turn left onto: Cashio Street
+Proceed for 0.60455 miles.
+Turn right onto: South Oakhurst Drive
+Proceed for 0.178298 miles.
+Turn left onto: Airdrome Street
+Proceed for 0.36652 miles.
+You have reached your destination! Total distance: 8.05045
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Thalians Mental Health Center
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.361206 miles.
+Turn left onto: Texas Avenue
+Proceed for 0.0666387 miles.
+Turn right onto: Federal Avenue
+Proceed for 0.0866312 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.128837 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.805014 miles.
+Turn left onto: Midvale Avenue
+Proceed for 0.106775 miles.
+Turn right onto: Wilkins Avenue
+Proceed for 0.215794 miles.
+Turn left onto: Malcolm Avenue
+Proceed for 0.0660924 miles.
+Turn right onto: Rochester Avenue
+Proceed for 0.843855 miles.
+Turn right onto: South Beverly Glen Boulevard
+Proceed for 0.0893218 miles.
+Turn left onto: Wilkins Avenue
+Proceed for 0.113562 miles.
+Turn right onto: Warnall Avenue
+Proceed for 0.0950311 miles.
+Turn left onto: Eastborne Avenue
+Proceed for 0.12221 miles.
+Turn right onto: Club View Drive
+Proceed for 0.12114 miles.
+Turn left onto: Santa Monica Boulevard
+Proceed for 0.69881 miles.
+Turn right onto: Wilshire Boulevard
+Proceed for 0.0493489 miles.
+Turn left onto: South Santa Monica Boulevard
+Proceed for 0.233481 miles.
+Turn right onto: North Bedford Drive
+Proceed for 0.125094 miles.
+Turn left onto: Brighton Way
+Proceed for 0.146774 miles.
+Turn right onto: North Rodeo Drive
+Proceed for 0.125484 miles.
+Turn left onto: Dayton Way
+Proceed for 0.31452 miles.
+Turn left onto: Alpine Drive
+Proceed for 0.0945335 miles.
+Turn right onto: Burton Way
+Proceed for 0.0739738 miles.
+Turn left onto: Foothill Road
+Proceed for 0.0204663 miles.
+Turn right onto: Burton Way
+Proceed for 0.221191 miles.
+Turn left onto: North Palm Drive
+Proceed for 0.0809708 miles.
+Turn right onto: West 3rd Street
+Proceed for 0.0723634 miles.
+Turn left onto: North Oakhurst Drive
+Proceed for 0.119559 miles.
+Turn right onto: Alden Drive
+Proceed for 0.455558 miles.
+You have reached your destination! Total distance: 8.27157
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Riviera Country Club
+
+
+SUCCESS:
+Proceed for 0.130642 miles.
+Turn left onto: South 26th Street
+Proceed for 0.153946 miles.
+Turn left onto: Allenford Avenue
+Proceed for 0.0820725 miles.
+You have reached your destination! Total distance: 0.36666
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Antietam Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.605353 miles.
+Turn left onto: Sepulveda Boulevard
+Proceed for 0.341101 miles.
+Turn right onto: Constitution Avenue
+Proceed for 0.0409684 miles.
+Turn left onto: San Juan Hill Avenue
+Proceed for 0.249825 miles.
+Turn right onto: Shiloh Drive
+Proceed for 0.101387 miles.
+Turn left onto: Antietam Avenue
+Proceed for 0.0641886 miles.
+You have reached your destination! Total distance: 3.71736
+
+Calculating route
+	from: Brentwood Country Mart
+	to: The Annenberg Space for Photography
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.448633 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.195576 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.402507 miles.
+Turn right onto: Pontius Avenue
+Proceed for 0.105916 miles.
+Turn left onto: Massachusetts Avenue
+Proceed for 0.0978542 miles.
+Turn right onto: South Bentley Avenue
+Proceed for 0.392325 miles.
+Turn left onto: Missouri Avenue
+Proceed for 1.13483 miles.
+Turn left onto: Holmby Avenue
+Proceed for 0.114687 miles.
+Turn right onto: Santa Monica Boulevard
+Proceed for 0.141248 miles.
+Turn left onto: South Beverly Glen Boulevard
+Proceed for 0.0136022 miles.
+Turn right onto: Santa Monica Boulevard
+Proceed for 0.409669 miles.
+Turn right onto: Avenue of the Stars
+Proceed for 0.218038 miles.
+Turn left onto: Constellation Boulevard
+Proceed for 0.00972016 miles.
+Turn right onto: Avenue of the Stars
+Proceed for 0.202837 miles.
+You have reached your destination! Total distance: 6.10478
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Hyatt Regency Century Plaza
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.448633 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.195576 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.402507 miles.
+Turn right onto: Pontius Avenue
+Proceed for 0.105916 miles.
+Turn left onto: Massachusetts Avenue
+Proceed for 0.0978542 miles.
+Turn right onto: South Bentley Avenue
+Proceed for 0.392325 miles.
+Turn left onto: Missouri Avenue
+Proceed for 1.13483 miles.
+Turn left onto: Holmby Avenue
+Proceed for 0.114687 miles.
+Turn right onto: Santa Monica Boulevard
+Proceed for 0.141248 miles.
+Turn left onto: South Beverly Glen Boulevard
+Proceed for 0.0136022 miles.
+Turn right onto: Santa Monica Boulevard
+Proceed for 0.19584 miles.
+Turn right onto: Century Park West
+Proceed for 0.224566 miles.
+Turn left onto: Constellation Boulevard
+Proceed for 0.227595 miles.
+Turn right onto: Avenue of the Stars
+Proceed for 0.125328 miles.
+You have reached your destination! Total distance: 6.03784
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 2000 Avenue of the Stars
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.448633 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.195576 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.402507 miles.
+Turn right onto: Pontius Avenue
+Proceed for 0.105916 miles.
+Turn left onto: Massachusetts Avenue
+Proceed for 0.0978542 miles.
+Turn right onto: South Bentley Avenue
+Proceed for 0.392325 miles.
+Turn left onto: Missouri Avenue
+Proceed for 1.13483 miles.
+Turn left onto: Holmby Avenue
+Proceed for 0.114687 miles.
+Turn right onto: Santa Monica Boulevard
+Proceed for 0.141248 miles.
+Turn left onto: South Beverly Glen Boulevard
+Proceed for 0.0136022 miles.
+Turn right onto: Santa Monica Boulevard
+Proceed for 0.409669 miles.
+Turn right onto: Avenue of the Stars
+Proceed for 0.218038 miles.
+Turn left onto: Constellation Boulevard
+Proceed for 0.00972016 miles.
+Turn right onto: Avenue of the Stars
+Proceed for 0.0344081 miles.
+You have reached your destination! Total distance: 5.93635
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Fox Plaza
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.448633 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.195576 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.402507 miles.
+Turn right onto: Pontius Avenue
+Proceed for 0.105916 miles.
+Turn left onto: Massachusetts Avenue
+Proceed for 0.0978542 miles.
+Turn right onto: South Bentley Avenue
+Proceed for 0.392325 miles.
+Turn left onto: Missouri Avenue
+Proceed for 0.814168 miles.
+Turn right onto: Parnell Avenue
+Proceed for 0.551594 miles.
+Turn left onto: Tennessee Avenue
+Proceed for 0.0635615 miles.
+Turn right onto: Prosser Avenue
+Proceed for 0.0503862 miles.
+Turn left onto: Ilona Avenue
+Proceed for 0.557765 miles.
+Turn right onto: Fox Hills Drive
+Proceed for 0.126769 miles.
+Turn left onto: West Pico Boulevard
+Proceed for 0.170537 miles.
+Turn left onto: Pico Boulevard
+Proceed for 0.140873 miles.
+Turn left onto: Avenue of the Stars
+Proceed for 0.409234 miles.
+You have reached your destination! Total distance: 6.74503
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Twentieth Century Fox Film Corporation
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.448633 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.195576 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.402507 miles.
+Turn right onto: Pontius Avenue
+Proceed for 0.105916 miles.
+Turn left onto: Massachusetts Avenue
+Proceed for 0.0978542 miles.
+Turn right onto: South Bentley Avenue
+Proceed for 0.392325 miles.
+Turn left onto: Missouri Avenue
+Proceed for 0.814168 miles.
+Turn right onto: Parnell Avenue
+Proceed for 0.551594 miles.
+Turn left onto: Tennessee Avenue
+Proceed for 0.0635615 miles.
+Turn right onto: Prosser Avenue
+Proceed for 0.0503862 miles.
+Turn left onto: Ilona Avenue
+Proceed for 0.557765 miles.
+Turn right onto: Fox Hills Drive
+Proceed for 0.126769 miles.
+Turn left onto: West Pico Boulevard
+Proceed for 0.170537 miles.
+Turn left onto: Pico Boulevard
+Proceed for 0.140873 miles.
+Turn left onto: Avenue of the Stars
+Proceed for 0.404514 miles.
+You have reached your destination! Total distance: 6.74031
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Century City Heliport
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.361206 miles.
+Turn left onto: Texas Avenue
+Proceed for 0.0666387 miles.
+Turn right onto: Federal Avenue
+Proceed for 0.0866312 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.128837 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.805014 miles.
+Turn left onto: Midvale Avenue
+Proceed for 0.106775 miles.
+Turn right onto: Wilkins Avenue
+Proceed for 0.215794 miles.
+Turn left onto: Malcolm Avenue
+Proceed for 0.0660924 miles.
+Turn right onto: Rochester Avenue
+Proceed for 0.809669 miles.
+Turn right onto: Pandora Avenue
+Proceed for 0.107407 miles.
+Turn left onto: Woodruff Avenue
+Proceed for 0.0646043 miles.
+Turn left onto: South Beverly Glen Boulevard
+Proceed for 0.0520359 miles.
+Turn right onto: Wilkins Avenue
+Proceed for 0.113562 miles.
+Turn right onto: Warnall Avenue
+Proceed for 0.0950311 miles.
+Turn left onto: Eastborne Avenue
+Proceed for 0.12221 miles.
+Turn right onto: Club View Drive
+Proceed for 0.12114 miles.
+Turn left onto: Santa Monica Boulevard
+Proceed for 0.0655008 miles.
+Turn right onto: Avenue of the Stars
+Proceed for 0.100926 miles.
+You have reached your destination! Total distance: 5.70641
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1160 Barry Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.106794 miles.
+You have reached your destination! Total distance: 2.17834
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1252 Barry Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.291792 miles.
+You have reached your destination! Total distance: 2.36334
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Parking 11
+
+
+SUCCESS:
+Proceed for 0.11693 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 0.310535 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.0116819 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 0.80442 miles.
+Turn left onto: South Saltair Avenue
+Proceed for 0.471771 miles.
+Turn right onto: Kearsarge Street
+Proceed for 0.155634 miles.
+Turn left onto: South Westgate Avenue
+Proceed for 0.190432 miles.
+Turn right onto: Sunset Boulevard
+Proceed for 0.799603 miles.
+Turn left onto: West Sunset Boulevard
+Proceed for 0.854323 miles.
+Turn right onto: Bellagio Drive
+Proceed for 0.0677371 miles.
+You have reached your destination! Total distance: 3.78307
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Easton Softball Stadium
+
+
+SUCCESS:
+Proceed for 0.11693 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 0.310535 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.0116819 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 0.80442 miles.
+Turn left onto: South Saltair Avenue
+Proceed for 0.471771 miles.
+Turn right onto: Kearsarge Street
+Proceed for 0.155634 miles.
+Turn left onto: South Westgate Avenue
+Proceed for 0.190432 miles.
+Turn right onto: Sunset Boulevard
+Proceed for 0.799603 miles.
+Turn left onto: West Sunset Boulevard
+Proceed for 0.854323 miles.
+Turn right onto: Bellagio Drive
+Proceed for 0.0929962 miles.
+You have reached your destination! Total distance: 3.80833
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 530 Bellagio Terrace
+
+
+SUCCESS:
+Proceed for 0.11693 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 0.310535 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.0116819 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 0.80442 miles.
+Turn left onto: South Saltair Avenue
+Proceed for 0.471771 miles.
+Turn right onto: Kearsarge Street
+Proceed for 0.155634 miles.
+Turn left onto: South Westgate Avenue
+Proceed for 0.190432 miles.
+Turn right onto: Sunset Boulevard
+Proceed for 0.770372 miles.
+Turn left onto: North Church Lane
+Proceed for 0.264383 miles.
+Turn right onto: Ovada Place
+Proceed for 0.0359545 miles.
+Turn left onto: Acanto Street
+Proceed for 0.121731 miles.
+Turn right onto: Bellagio Road
+Proceed for 0.58891 miles.
+Turn right onto: Bellagio Terrace
+Proceed for 0.0648752 miles.
+You have reached your destination! Total distance: 3.90763
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Saperstein Critical Care Tower
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.361206 miles.
+Turn left onto: Texas Avenue
+Proceed for 0.0666387 miles.
+Turn right onto: Federal Avenue
+Proceed for 0.0866312 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.128837 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.805014 miles.
+Turn left onto: Midvale Avenue
+Proceed for 0.106775 miles.
+Turn right onto: Wilkins Avenue
+Proceed for 0.215794 miles.
+Turn left onto: Malcolm Avenue
+Proceed for 0.0660924 miles.
+Turn right onto: Rochester Avenue
+Proceed for 0.843855 miles.
+Turn right onto: South Beverly Glen Boulevard
+Proceed for 0.0893218 miles.
+Turn left onto: Wilkins Avenue
+Proceed for 0.113562 miles.
+Turn right onto: Warnall Avenue
+Proceed for 0.0950311 miles.
+Turn left onto: Eastborne Avenue
+Proceed for 0.12221 miles.
+Turn right onto: Club View Drive
+Proceed for 0.12114 miles.
+Turn left onto: Santa Monica Boulevard
+Proceed for 0.69881 miles.
+Turn right onto: Wilshire Boulevard
+Proceed for 0.0493489 miles.
+Turn left onto: South Santa Monica Boulevard
+Proceed for 0.233481 miles.
+Turn right onto: North Bedford Drive
+Proceed for 0.125094 miles.
+Turn left onto: Brighton Way
+Proceed for 0.146774 miles.
+Turn right onto: North Rodeo Drive
+Proceed for 0.125484 miles.
+Turn left onto: Dayton Way
+Proceed for 0.31452 miles.
+Turn left onto: Alpine Drive
+Proceed for 0.0945335 miles.
+Turn right onto: Burton Way
+Proceed for 0.0739738 miles.
+Turn left onto: Foothill Road
+Proceed for 0.0204663 miles.
+Turn right onto: Burton Way
+Proceed for 0.221191 miles.
+Turn left onto: North Palm Drive
+Proceed for 0.0809708 miles.
+Turn right onto: West 3rd Street
+Proceed for 0.0723634 miles.
+Turn left onto: North Oakhurst Drive
+Proceed for 0.119559 miles.
+Turn right onto: Alden Drive
+Proceed for 0.185083 miles.
+Turn left onto: North Almont Drive
+Proceed for 0.184219 miles.
+Turn right onto: Rosewood Avenue
+Proceed for 0.372446 miles.
+Turn right onto: North Sherbourne Drive
+Proceed for 0.135975 miles.
+Turn right onto: Beverly Boulevard
+Proceed for 0.0466584 miles.
+You have reached your destination! Total distance: 8.74039
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Mr. C Beverly Hills
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.448633 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.195576 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.402507 miles.
+Turn right onto: Pontius Avenue
+Proceed for 0.105916 miles.
+Turn left onto: Massachusetts Avenue
+Proceed for 0.0978542 miles.
+Turn right onto: South Bentley Avenue
+Proceed for 0.392325 miles.
+Turn left onto: Missouri Avenue
+Proceed for 0.814168 miles.
+Turn right onto: Parnell Avenue
+Proceed for 0.551594 miles.
+Turn left onto: Tennessee Avenue
+Proceed for 0.0635615 miles.
+Turn right onto: Prosser Avenue
+Proceed for 0.0503862 miles.
+Turn left onto: Ilona Avenue
+Proceed for 0.557765 miles.
+Turn right onto: Fox Hills Drive
+Proceed for 0.126769 miles.
+Turn left onto: West Pico Boulevard
+Proceed for 0.170537 miles.
+Turn left onto: Pico Boulevard
+Proceed for 0.751253 miles.
+Turn left onto: Beverwil Drive
+Proceed for 0.0429803 miles.
+You have reached your destination! Total distance: 6.98916
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Sawtelle Veterans Chapel
+No route: Brentwood Country Mart, Sawtelle Veterans Chapel
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Veterans Hospital
+No route: Brentwood Country Mart, Veterans Hospital
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Jackie Robinson Stadium
+No route: Brentwood Country Mart, Jackie Robinson Stadium
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1 Brinkley Avenue
+
+
+SUCCESS:
+Proceed for 0.130642 miles.
+Turn left onto: South 26th Street
+Proceed for 0.153946 miles.
+Turn left onto: Allenford Avenue
+Proceed for 0.133706 miles.
+Turn left onto: Pontoon Place
+Proceed for 0.10919 miles.
+Turn left onto: Brinkley Avenue
+Proceed for 0.117806 miles.
+You have reached your destination! Total distance: 0.645289
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 2 Brinkley Avenue
+
+
+SUCCESS:
+Proceed for 0.130642 miles.
+Turn left onto: South 26th Street
+Proceed for 0.153946 miles.
+Turn left onto: Allenford Avenue
+Proceed for 0.133706 miles.
+Turn left onto: Pontoon Place
+Proceed for 0.10919 miles.
+Turn left onto: Brinkley Avenue
+Proceed for 0.146223 miles.
+You have reached your destination! Total distance: 0.673707
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Harvard-Westlake Middle School
+
+
+SUCCESS:
+Proceed for 0.11693 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 0.310535 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.0116819 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.23305 miles.
+Turn right onto: South Barrington Avenue
+Proceed for 0.257798 miles.
+Turn left onto: Kiowa Avenue
+Proceed for 0.12739 miles.
+Turn right onto: Barry Avenue
+Proceed for 0.361206 miles.
+Turn left onto: Texas Avenue
+Proceed for 0.0666387 miles.
+Turn right onto: Federal Avenue
+Proceed for 0.0866312 miles.
+Turn left onto: Rochester Avenue
+Proceed for 0.128837 miles.
+Turn right onto: Butler Avenue
+Proceed for 0.145786 miles.
+Turn left onto: Ohio Avenue
+Proceed for 0.684169 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.235569 miles.
+Turn right onto: Rochester Avenue
+Proceed for 0.387 miles.
+Turn left onto: Malcolm Avenue
+Proceed for 0.281865 miles.
+Turn right onto: Lindbrook Drive
+Proceed for 0.871807 miles.
+Turn left onto: South Beverly Glen Boulevard
+Proceed for 0.910983 miles.
+Turn right onto: West Sunset Boulevard
+Proceed for 0.121231 miles.
+Turn left onto: North Beverly Glen Boulevard
+Proceed for 0.400584 miles.
+Turn right onto: Greendale Dr
+Proceed for 0.123518 miles.
+Turn left onto: North Faring Road
+Proceed for 0.0874903 miles.
+Turn right onto: Brooklawn Drive
+Proceed for 0.0146262 miles.
+You have reached your destination! Total distance: 6.96532
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Diddy Riese
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.147471 miles.
+Turn right onto: Weyburn Avenue
+Proceed for 0.0664508 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0374882 miles.
+You have reached your destination! Total distance: 3.67046
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Fox Theater
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.147471 miles.
+Turn right onto: Weyburn Avenue
+Proceed for 0.0664508 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0172037 miles.
+You have reached your destination! Total distance: 3.65017
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Mr. Noodle
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.147471 miles.
+Turn right onto: Weyburn Avenue
+Proceed for 0.0664508 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.029884 miles.
+You have reached your destination! Total distance: 3.66285
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1031 Broxton Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.147471 miles.
+Turn right onto: Weyburn Avenue
+Proceed for 0.0664508 miles.
+Turn right onto: Broxton Avenue
+Proceed for 0.0578963 miles.
+You have reached your destination! Total distance: 3.69086
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1037 Broxton Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.147471 miles.
+Turn right onto: Weyburn Avenue
+Proceed for 0.0664508 miles.
+Turn right onto: Broxton Avenue
+Proceed for 0.0750417 miles.
+You have reached your destination! Total distance: 3.70801
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1045 Broxton Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0862656 miles.
+You have reached your destination! Total distance: 3.56174
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1055 Broxton Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.080147 miles.
+You have reached your destination! Total distance: 3.55562
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1061 Broxton Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0590909 miles.
+You have reached your destination! Total distance: 3.53456
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Ami Sushi
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0714782 miles.
+You have reached your destination! Total distance: 3.54695
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Barney's Beanery
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.147471 miles.
+Turn right onto: Weyburn Avenue
+Proceed for 0.0664508 miles.
+Turn right onto: Broxton Avenue
+Proceed for 0.0616327 miles.
+You have reached your destination! Total distance: 3.6946
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Five Guys
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0644898 miles.
+You have reached your destination! Total distance: 3.53996
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Regent
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0807829 miles.
+You have reached your destination! Total distance: 3.55625
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1067 Broxton Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.0462488 miles.
+You have reached your destination! Total distance: 3.52172
+
+Calculating route
+	from: Brentwood Country Mart
+	to: 1073 Broxton Avenue
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.208596 miles.
+Turn left onto: Broxton Avenue
+Proceed for 0.036981 miles.
+You have reached your destination! Total distance: 3.51245
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Ackerman Union
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.211706 miles.
+Turn left onto: Levering Avenue
+Proceed for 0.146426 miles.
+Turn right onto: Roebling Avenue
+Proceed for 0.142686 miles.
+Turn left onto: Landfair Avenue
+Proceed for 0.108221 miles.
+Turn right onto: Strathmore Drive
+Proceed for 0.100252 miles.
+Turn right onto: Strathmore Place
+Proceed for 0.231435 miles.
+Turn left onto: Westwood Plaza
+Proceed for 0.159484 miles.
+Turn right onto: Bruin Walk
+Proceed for 0.071022 miles.
+You have reached your destination! Total distance: 4.59028
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Kerckhoff Hall
+
+
+SUCCESS:
+Proceed for 0.082286 miles.
+Turn left onto: Brentwood Terrace
+Proceed for 0.224348 miles.
+Turn left onto: South Burlingame Avenue
+Proceed for 0.146677 miles.
+Turn right onto: West San Vicente Boulevard
+Proceed for 1.1762 miles.
+Turn left onto: Gorham Avenue
+Proceed for 0.239711 miles.
+Turn right onto: Bringham Avenue
+Proceed for 0.193662 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.0953737 miles.
+Turn right onto: Kiowa Avenue
+Proceed for 0.0086896 miles.
+Turn left onto: West San Vicente Boulevard
+Proceed for 0.147585 miles.
+Turn left onto: Wilshire Boulevard
+Proceed for 0.855787 miles.
+Turn left onto: Veteran Avenue
+Proceed for 0.0965528 miles.
+Turn right onto: Kinross Avenue
+Proceed for 0.15217 miles.
+Turn left onto: Gayley Avenue
+Proceed for 0.211706 miles.
+Turn left onto: Levering Avenue
+Proceed for 0.146426 miles.
+Turn right onto: Roebling Avenue
+Proceed for 0.142686 miles.
+Turn left onto: Landfair Avenue
+Proceed for 0.108221 miles.
+Turn right onto: Strathmore Drive
+Proceed for 0.100252 miles.
+Turn right onto: Strathmore Place
+Proceed for 0.231435 miles.
+Turn left onto: Westwood Plaza
+Proceed for 0.159484 miles.
+Turn right onto: Bruin Walk
+Proceed for 0.0732437 miles.
+You have reached your destination! Total distance: 4.5925
+
+Calculating route
+	from: Brentwood Country Mart
+	to: Student Activities Center

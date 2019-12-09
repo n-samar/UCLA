@@ -1,0 +1,39 @@
+===============================================================================
+Version:    xocc v2018.2.op (64-bit)
+Build:      SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+Copyright:  Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+Created:    Sat Oct 27 03:57:21 2018
+===============================================================================
+
+-------------------------------------------------------------------------------
+Design Name:             digitrec_kernel.hw_emu.xilinx_aws-vu9p-f1-04261818_dynamic_5_0
+Target Device:           xilinx:aws-vu9p-f1-04261818:dynamic:5.0
+Target Clock:            250.000000MHz
+Total number of kernels: 1
+-------------------------------------------------------------------------------
+
+Kernel Summary
+Kernel Name      Type  Target              OpenCL Library                                                  Compute Units
+---------------  ----  ------------------  --------------------------------------------------------------  -------------
+digitrec_kernel  c     fpga0:OCL_REGION_0  digitrec_kernel.hw_emu.xilinx_aws-vu9p-f1-04261818_dynamic_5_0  1
+
+
+-------------------------------------------------------------------------------
+OpenCL Binary:     digitrec_kernel.hw_emu.xilinx_aws-vu9p-f1-04261818_dynamic_5_0
+Kernels mapped to: clc_region
+
+Timing Information (MHz)
+Compute Unit       Kernel Name      Module Name      Target Frequency  Estimated Frequency
+-----------------  ---------------  ---------------  ----------------  -------------------
+digitrec_kernel_1  digitrec_kernel  digitrec_kernel  250               342.465759
+
+Latency Information (clock cycles)
+Compute Unit       Kernel Name      Module Name      Start Interval  Best Case  Avg Case  Worst Case
+-----------------  ---------------  ---------------  --------------  ---------  --------  ----------
+digitrec_kernel_1  digitrec_kernel  digitrec_kernel  414078          414077     414077    414077
+
+Area Information
+Compute Unit       Kernel Name      Module Name      FF    LUT   DSP  BRAM
+-----------------  ---------------  ---------------  ----  ----  ---  ----
+digitrec_kernel_1  digitrec_kernel  digitrec_kernel  2889  4275  3    75
+-------------------------------------------------------------------------------

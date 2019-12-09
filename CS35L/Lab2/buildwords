@@ -1,0 +1,33 @@
+#!/bin/sh
+
+fgrep -A3 '<tr>' | fgrep '<td>' > temp.txt
+sed -n '1~2!p' temp.txt | tr [:upper:] [:lower:] | tr '\`' \'
+	| sed -e "s/<td>//g" | sed -e "s/<\/td>//g" | sed -e "s/<u>//g"
+	| sed -e "s/<\/u>//g" | grep -v '^ *$' | tr -s ',' ['\n'] | tr -d ' '
+    | grep -v [^pk\'mnwlhaeiou?] | sort
+
+# PIPING EXPLANATION:
+# get all lines from STDIN that contain '<tr>'. Also, add 3 lines of context
+# get all lines that contain '<td>'
+# get every other line
+# change all letters to lowercase
+# switch grave accent to appostrophe
+# remove '<td>' and then '</td>'
+# remove '<u>' and then '</u>'
+# keep only lines that contain something more than just spaces
+# split words seperated by commas into different lines
+# delete all spaces
+# delete all words that contain letters that are not a part of the Hawaiian alphabet
+# sort the words lexicographicaly
+
+# PREVIOUS VERSION USING SED COMMAND:
+# sed -ie 's/<[^>]*>//g' "$1"
+# sed -i '/^\s*$/d' "$1"
+# sed -i '/^\ /!d' "$1"
+# sed -ie '1,4d' "$1"
+# sed -n '1~2!p' "$1" >temp
+# cat temp >"$1"
+# sed -i 's/[[:blank:]]//g' "$1"
+# sed -i "s/,/\n/g" "$1"
+# sed -i "s/[[:punct:]]/\'/g" "$1"
+# sed -i 's/[[:blank:]]//g' "$1"

@@ -1,0 +1,25 @@
+			   __________________
+
+			      PEXEXLAB.TXT
+
+			    Nikola Samardzic
+			   __________________
+
+
+
+
+
+1 Gathering Instruction Traces
+==============================
+
+  1. Enter gdb with the executable gdb ~eggert/bin64/bin/emacs-25.2
+  2. Set breakpoint at Ftimes break Ftimes
+  3. Set machine code output set disassemble-next-line on
+  4. Set logging on so that gdb output is saved set logging on
+  5. Run the appropriate command r -Q -batch -eval '(print (* 1250284240
+     -1844255039))'
+  6. We reach the breakpoint set at Ftimes. Now we should step through
+     the function until it returns. We notice that Ftimes also calls an
+     arithmetic driver function. I also used info reg/print $<register>
+     to examine the content of the registers throughout execution and 
+     fill in the last column of the output.

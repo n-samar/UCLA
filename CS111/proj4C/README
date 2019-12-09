@@ -1,0 +1,20 @@
+			  ___________________
+
+			       PROJECT 4C
+
+			   CS 111, Fall 2017
+			  ___________________
+
+
+NAME: Nikola Samardzic
+EMAIL: nikola.s@ucla.edu
+ID: 904799099
+
+
+1 Description of included files
+===============================
+
+  - README: This README
+  - lab4c_tcp.c: My implementation of Project 4C part 1 in C
+  - lab4c_tls.c: My implementation of Project 4C part 2 in C  
+  - Makefile: Includes directives as discribed in the project spec

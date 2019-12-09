@@ -1,0 +1,27 @@
+REPORT, PROJECT 4, CS32
+Nikola Samardzic
+
+MyMap:
+	associate(): O(log N) where N is the number of elements inside MyMap
+	find()	   : O(log N) where N is the number of elements inside MyMap
+
+AttractionMapper:
+	init(): O(S + A*W*log A) where S is the number of segments in the
+	appropriate MapLoader's MyMap, A is the number of attractions within
+	these segments and W is the average word length of the street names.
+	getGeoCoord(): O(log A) where A is the number of attraction within
+	MapLoader's MyMap's segments.
+
+SegmentMapper:
+	init(): O(S*K*log G + K*A*log G) where S is the total number of
+	segments, K is the average number of segments associated with a
+	particular geocoordinate (if complete graph than this starts
+	being a relevant factor), A is the number of attracions and G is
+	the total number of geocoordinates.
+	getSegments(): O(log G + K), where K is the average number of
+	segments associated with a particular Geocoord and G is the total
+	number of GeoCoords.
+
+Navigator:
+	navigate(): O((N+A)*log (N+A)), where N is the total number of
+	segments and A is the total number of attractions.

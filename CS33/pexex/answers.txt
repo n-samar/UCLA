@@ -1,0 +1,117 @@
+			 ______________________
+
+			       ANSWERS.TXT
+
+			    Nikola Samardzic
+			 ______________________
+
+
+
+
+
+1
+===
+
+  547920 48 8d 04 ad 02 00 00 00 lea 0x2(,%rbp,4),%rax The way emacs
+     does multiplication is explained in detail in answer to question
+     3. The lea applies the appropriate mask to rbp to produce the
+     desired result (it multiplies by 4). Before this %rbp stores the
+     product that standard C code would produced if compiled with
+     -fwrapv. The shift by 2 (multiplication) applies the wraping rules
+     of lisp explained under 3.
+
+
+2
+===
+
+  #define MOST_NEGATIVE_FIXNUM (-1 - MOST_POSITIVE_FIXNUM) This is how
+  most-negative-fixnum is defined, the most-positive-fixunum is defined
+  by #define MOST_POSITIVE_FIXNUM (EMACS_INT_MAX >> INTTYPEBITS)
+  EMACS_INT_MAX is defined as INT_MAX.  Since we are on an x86-64
+  INT_MAX is 2**15-1. INTTYPEBITS is GCTYPEBITS - 1 (= 2), which means
+  MOST_POSITIVE_FIXNUM should should be 0x3fffffffffffffff. Therefore,
+  MOST_NEGATIVE_FIXNUM is -2305843009213693952 in decimal.
+
+
+3
+===
+
+  In the arith_driver function (that Ftimes will call to take care of
+  multiplication) we have case Amult: overflow |= INT_MULTIPLY_WRAPV
+  (accum, next, &accum); The INT_MULTIPLY_WRAPV will wrapv if it
+  overflows and set the overflow variable to 1. The way emacs handles
+  wrapping is described in the lisp.h file. If the multiplication
+  overflows it will be masked by INTMASK which is 0x3fffffff... (=
+  EMACS_INT_MAX >> (INTTYPEBITS - 1)). INTTYPEBITS is GCTYPEBITS - 1 (=
+  2). wrapv will return as the product 0xc000000000000001.  After
+  applying the mask we get 0x1. Then we multiply 1 with
+  most-positive-fixnum which returns most-positive-fixnum.  Multiplying
+  this further by most-positive-fixnum gives 0x1 again, which is the
+  output.
+
+
+4
+===
+
+  Using -fwrapv will not change the output and would handle
+  multiplication in the same way as before. lisp's arith_driver does not
+  depend on C's multiplication (star '*') but multiplies using bitwise
+  logic and shifts.  This can be seen in the source code.
+
+
+5
+===
+
+  I ran bt 5 full after executing the buggy program. The output was
+
+  #0 0x00007ffff173949b in __strcpy_sse2_unaligned () at
+  #/lib64/libc.so.6 1 0x00000000005558f2 in emacs_setenv_TZ
+  #(tzstring=0x1483609 'X' <repeats 135 times>, "T", 'X' <repeats 64
+  #times>...) at editfns.c:2428 tzvalbufsize = 1005 tzstringlen = 978
+  #tzval = 0x1483690 "T", 'X' <repeats 137 times>, "T", 'X' <repeats 61
+  #times>...  new_tzvalbuf = false 2 0x00000000005d7f28 in revert_tz
+  #(tz=0x1483600) at time_rz.c:223 saved_errno = 36 3 0x00000000005d7f28
+  #in revert_tz (tz=tz@entry=0x1483600) at time_rz.c:268 saved_errno =
+  #36 4 0x00000000005d82bc in localtime_rz (tz=0x1483200,
+  #t=0x7fffffffc748, tm=0x7fffffffd730) at time_rz.c:289 abbr_saved =
+  #true old_tz = 0x1483600 5 0x000000000055632a in format_time_string
+  #(tm=0x7fffffffc710, t=0x7fffffffc748, tz=<optimized out>) at
+  #editfns.c:107 buffer = "\024\310\377\377\377\177\000\000\211&D\001",
+  #'\000' <repeats 12 times>,
+  #"\022\000\000\000\000\000\000\000\373\377\377\377\377\377\377\377\244z\204",
+  #'\000' <repeats 13 times>,
+  #"\332\377F\001\000\000\000\000\200\311\377\377\377\177\000\000
+  #\313\377\377\377\177\000\000@\312\377\377\377\177", '\000' <repeats
+  #18 times>, "\001", '\000' <repeats 15 times>,
+  #"HBI\000\000\000\000\000/\000\000\000u\000\000\000/\000\000\000c\000\000\000s\000\000\000/\000\000\000u\000\000\000g\000\000\000r\000\000\000a\000\000\000\020\376C\001\000\000\000\000`\367\245\361\377\177\000\000\000\376C\001\000\000\000\000
+  #\314\377\377\377\177\000\000"...  buf = 0x7fffffffc750
+  #"\024\310\377\377\377\177" size = 4000 len = <optimized out>
+  #bufstring = <optimized out> ns = <optimized out> sa_avail = 16384
+  #sa_must_free = false tsec = 1494056855B
+
+  I tried breaking the strcpy function but it seems we do not have
+  debugging information on it.
+
+  Now I issue: break emacs_setenv_TZ and run the program again
+
+  By stepping through this funtion I see the bug occurs when
+
+  2428 strcpy (tzval + tzeqlen, tzstring);
+
+  is called (line 2428 of data.c).
+
+  I break that line: break 2428 and continue with c: 0x1483690 tzval `=
+  "T", 'X' <repeats 199 times>...  tzeqlen =' 3 tzval + tzeqlen =
+  0x1483693 'X' <repeats 200 times>...  tzstring == 0x1483609 'X'
+  <repeats 135 times>, "T", 'X' <repeats 64 times>...
+
+  Now, we see thatt 0x1483609 + 200 = 0x14836D1 > 0x1483693. This means
+  that the destination and source string passed to strcpy overlap (we
+  see that they are both have length 200 chars).
+
+  Specifically, the C library description states: To avoid overflows,
+  the size of the array pointed by destination shall be long enough to
+  contain the same C string as source (including the terminating null
+  character), and should not overlap in memory with source.
+
+  But here the two strings overlap. This causes the error.

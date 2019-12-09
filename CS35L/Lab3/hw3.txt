@@ -1,0 +1,54 @@
+Q1. From the patch:
+
+> So the first minor issue I have is that ISO has been the usual
+> format for 4 years at least, so I suspect that this might trigger
+> bugs in scripts parsing ls output. I do prefer the traditional
+> POSIX specified format myself and I'm surprised that no one
+> reported this until now. In summary I'm about 60:40 for making
+> the change, and if we do I'll add appropriate text to NEWS.
+
+    And later:
+
+> So I think if we accept the first point above that we would change the
+> default format to POSIX for most people I think we should just remove the
+> code defaulting to ISO if a translation is not available ?
+
+    So, clearly, the author is not 100% sure if he should make the change
+    and does not consider it necessary.
+    However, he seems to prefer the POSIX format for the default, but is
+    still scared that making the change might cause problems for developers
+    that rellied on the ISO formating of the ls command in their code.
+    Also, the ls date format will default to ISO when a format translation
+    for a language is not available (even if month abbreviations are as
+    exemplified by Tagalog). The patcher does not like this feature.
+
+Q2. Two posts down, prof. Eggert puts forth objections to the change that might
+    affect non-english speaking users:
+
+* The change will cause column-alignment problems in non-English
+  locales where %b generates different numbers of columns for
+  different months.
+
+* There are more users in non-English locales than in non-"C" English
+  locales, and the harm in the non-English case (incomprehensible
+  dates) is much greater than the harm in the English case
+  (comprehensible but ugly dates).
+
+* The existing code is better for the poorly-configured case where
+  only one of the two translations is missing.
+
+Q3. The program produces an error. the generator is initialized as
+    randline(input_file), which makes the generator empty. Calling chooseline()
+    on generator produces an error because generator is empty. As the error
+    output states the chooseline() raises IndexError if seq is empty.
+
+Q4. An error is outputed. The code does not execute:
+       	     	      File "readline.py", line 65
+    	 	      except IOError as (errno, strerror):
+                      	       	       	 ^
+		      SyntaxError: invalid syntax
+    This happens because in Python 2 exceptions are iterable, meaning you can
+    iterate over the parameters given to the exception. Due to the "explicit 
+    is better than implicit" rule of Python this has been changed in Python 3.
+    Now, these expections can be caught with
+    	       	      errno, strerror = e.args

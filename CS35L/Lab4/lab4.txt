@@ -1,0 +1,110 @@
+CONFIGURE: ./configure -prefix=$HOME/Desktop/buggy
+MAKE: make
+
+ERROR MESSAGE:
+In file included from utimecmp.c:41:0:
+utimens.h:2:5: error: conflicting types for 'futimens'
+ int futimens (int, char const *, struct timespec const [2]);
+     ^~~~~~~~
+In file included from utimecmp.h:25:0,
+                 from utimecmp.c:25:
+/usr/include/sys/stat.h:373:12: note: previous declaration of 'futimens' was here
+ extern int futimens (int __fd, const struct timespec __times[2]) __THROW;
+            ^~~~~~~~
+make[3]: *** [Makefile:659: utimecmp.o] Error 1
+make[3]: Leaving directory '/w/home.13/cs/ugrad/nikola/Desktop/coreutils-with-bug/lib'
+make[2]: *** [Makefile:414: all] Error 2
+make[2]: Leaving directory '/w/home.13/cs/ugrad/nikola/Desktop/coreutils-with-bug/lib'
+make[1]: *** [Makefile:419: all-recursive] Error 1
+make[1]: Leaving directory '/w/home.13/cs/ugrad/nikola/Desktop/coreutils-with-bug'
+make: *** [Makefile:357: all] Error 2
+
+Apply patch within the coreutils-with-bug directory: patch -p0 < rename.patch
+
+WHAT DID THE PATCH FIX?
+The patch gives clues as to what it changes and why:
+	
+	- There's currently no interface to set file timestamps with
+	- If true, append to output files rather than truncating them.
+	- Do *not* warn if tee is given no file arguments.
+      		POSIX requires that it work when given no arguments.
+
+There seems to be a name conflict between two different functions. The patch renames some of the functions using the coreutils_ prefix (futimes -> coreutils_futimes, tee -> coreutils_tee)
+
+MAKE: make
+MAKE INSTALL: make install
+running ls in debug mode: gdb ./ls
+finding relevant functions: info functions time
+We find a function called compare_mtime which seems relevant. I set a
+breakpoint at this location:
+	   breakpoint compare_mtime
+adding appropriate options: run -lt /tmp/tmp.6jTyyeVV2f
+here, /tmp/tmp.6jTyyeVV2f is the temporary directory that I created as
+instructed by the spec. This code reproduces the bug. 
+
+The execution will stop when it flows into compare_mtime.
+
+After some inspection it seems that file info is kept in the fileinfo struct.
+This struct contains the modification time of each file named mtime. We set up
+a breakpoint in the compare_mtime function. After each break we need to access
+the st_mtim member of the stat struct that is part of fileinfo. Let's run
+our programe until we hit compare_mtimes for 'now' and 'wwi-armstice'.
+
+Now let's print out the stat struct for 'now' to get the modification time:
+    tv_sec = 1486004356
+Now the same for 'wwi-armstice':
+    tv_sec = -1613826000
+
+Here, tv_sec is negative because 1911 was before the start of the epoch (1970)
+
+If we run step under gdb now we reach a definition inside 
+   timespec_cmp (b=..., a=...) at ../lib/timespec.h:48
+this line states:
+     int diff = a.tv_sec - b.tv_sec;
+
+This diff variable is later used to compare the modification dates of the
+files.
+
+Using print diff we see that it is equal to 1195136949.
+However 1486004356 - (-1613826000) == 3,099,830,356 and not 1195136949.
+
+This is because int is not the appropriate type for diff, since it can easily
+overflow.
+
+Within line 3034 we see that compare_mtime is used for qsort if -t is active.
+This means it is important for diff to not overflow. Possible solution:
+
+Change timespec.h's function timespec_cmp into:
+
+static inline int
+timespec_cmp (struct timespec a, struct timespec b)
+{
+  if(a.tv_sec - b.tv_sec > 0)
+    return 1;
+  if(a.tv_sec - b.tv_sec < 0)
+    return -1;
+  return 0;
+}
+
+This should produce the desired result and foregoes any overflow problems.
+The loss of precission should not be concerning since the function is desc-
+ribed as
+
+Return negative, zero, positive if A < B, A == B, A > B, respectively.
+   Assume the nanosecond components are in range, or close to it.
+
+I save this new fix in a file called newtimespec.h and save it on linux Desktop
+
+I make a patch:
+diff -u ./coreutils-with-bug/lib/timespec.h ./newtimespec.h > lab4.diff
+
+RUNNING ls AND touch ON SEASNET HOME DIRECTORY:
+SEASnet linux seems to do an ever worst job than coreutils-with-bug:
+-rw-r--r-- 1 nikola csugrad 0 2054-12-17 17:28:16.000000000 +0000 wwi-armistice
+-rw-r--r-- 1 nikola csugrad 0 2017-02-02 05:52:23.973688000 +0000 now1
+-rw-r--r-- 1 nikola csugrad 0 2017-02-02 05:52:13.462688000 +0000 now
+
+It not only orders the files incorrectly but it also displays the modification
+date of the 'wwi-armistice' file as in the future (2054).
+
+After patching the file timespec.h file I reinstalled coreutils-with-bug into a new spot. After running the new version I notice that the old bug is gone.

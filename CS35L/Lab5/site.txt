@@ -1,0 +1,177 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>
+<title>Assignment 5. System call programming and debugging</title>
+</head>
+
+<body>
+
+<h1>Assignment 5. System call programming and debugging</h1>
+
+<h2>Useful pointers</h2>
+
+<ul>
+ <li>Franco Callari, <a
+  href='http://www.cim.mcgill.ca/~franco/OpSys-304-427/lecture-notes/node18.html'>Block-oriented
+  I/O in Unix</a> (1996)</li>
+ <li><a href='http://www.opengroup.org/onlinepubs/9699919799/'>The Open Group Base
+  Specifications Issue 7, IEEE Std 1003.1-2008, 2016 Edition</a> is the official
+  standard for commands, system calls and some higher-level library calls.</li>
+ <li><samp>man strace</samp></li>
+ <li><a href='http://en.wikipedia.org/wiki/Strace'>strace</a> on Wikipedia</li>
+</ul>
+
+<h2>Laboratory: Buffered versus unbuffered I/O</h2>
+
+<p>As usual, keep a log in the file <samp>lab.txt</samp> of what you
+do in the lab so that you can reproduce the results later. This should
+not merely be a transcript of what you typed: it should be more like a
+true lab notebook, in which you briefly note down what you did and
+what happened.</p>
+
+<p>For this laboratory, you will implement transliteration
+programs <samp>tr2b</samp> and <samp>tr2u</samp> that use buffered and
+unbuffered I/O respectively, and compare the resulting implementations
+and performance. Each implementation should be a main program that
+takes two operands <var>from</var> and <var>to</var> that are byte
+strings of the same length, and that copies standard input to standard
+output, transliterating every byte in <var>from</var> to the
+corresponding byte in <var>to</var>. Your implementations should
+report an error <var>from</var> and <var>to</var> are not the same
+length, or if <var>from</var> has duplicate bytes.  To summarize, your
+implementations should like the standard utility
+<samp><a href='http://pubs.opengroup.org/onlinepubs/9699919799/utilities/tr.html'>tr</a></samp>
+does, except that they have no options, characters
+like <samp>[</samp>, <samp>-</samp> and <samp>\</samp> have no special
+meaning in the operands, operand errors must be diagnosed, and your
+implementations act on bytes rather than on (possibly multibyte)
+characters.</p>
+
+<ol>
+
+<li>Write a C transliteration program <samp>tr2b.c</samp> that
+uses <a
+href='http://www.opengroup.org/onlinepubs/9699919799/functions/getchar.html'><samp>getchar</samp></a>
+and <a
+href='http://www.opengroup.org/onlinepubs/9699919799/functions/putchar.html'><samp>putchar</samp></a>
+to transliterate bytes as described above.</li>
+
+<li>Write a C program <samp>tr2u.c</samp> that uses <a
+href='http://www.opengroup.org/onlinepubs/9699919799/functions/read.html'><samp>read</samp></a>
+and <a
+href='http://www.opengroup.org/onlinepubs/9699919799/functions/write.html'><samp>write</samp></a>
+to transliterate bytes, instead of using <samp>getchar</samp> and
+<samp>putchar</samp>. The <var>nbyte</var> arguments to
+<samp>read</samp> and <samp>write</samp> should be 1, so that the
+program reads and writes single bytes at a time.</li>
+
+<li>Use the <samp>strace</samp> command to compare the system calls
+issued by your <samp>tr2b</samp> and <samp>tr2u</samp> commands (a)
+when copying one file to another, and (b) when copying a file to your
+terminal. Use a file that contains at least 5,000,000 bytes.</li>
+
+<li>Use the <a
+href='http://www.opengroup.org/onlinepubs/9699919799/utilities/time.html'><samp>time</samp></a>
+command to measure how much faster one program is, compared to the
+other, when copying the same amount of data.</li>
+
+</ol>
+
+<h2>Homework: Encrypted sort revisited</h2>
+
+<p>Rewrite the <samp>sfrob</samp> program you wrote previously
+so that it uses system calls rather than <samp>&lt;stdio.h&gt;</samp>
+to read standard input and write standard output.
+If standard input is a regular file, your program should
+initially allocate enough memory to hold all the data in that file all at
+once, rather than
+the usual algorithm of reallocating memory as you go. However, if
+the regular file grows while you are reading it, your program should
+still work, by allocating more memory after the initial file size has
+been read.</p>
+
+<p>Your program should do one thing in addition to <samp>sfrob</samp>.
+If given the <samp>-f</samp> option, your program should
+ignore case while sorting, by using the standard <samp><a
+href='http://pubs.opengroup.org/onlinepubs/9699919799/functions/toupper.html'>toupper</a></samp>
+function to upper-case each byte after decrypting and before comparing
+the byte. You can assume that each input byte represents a separate
+character; that is, you need not worry about <a
+href='https://en.wikipedia.org/wiki/Variable-width_encoding'>multi-byte
+encodings</a>. As noted in its specification, <samp>toupper</samp>'s
+argument should be either <samp>EOF</samp> or a nonnegative value
+that is at most <samp>UCHAR_MAX</samp> (as defined in <samp><a
+href='http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/limits.h.html'>&lt;limits.h&gt;</a></samp>);
+hence one cannot simply pass a <samp>char</samp> value to
+<samp>toupper</samp>, as <samp>char</samp> is in the
+range <samp>CHAR_MIN</samp>..<samp>CHAR_MAX</samp>.</p>
+
+<p>Call the rewritten program
+<samp>sfrobu</samp>. Measure any differences in performance between
+<samp>sfrob</samp> and <samp>sfrobu</samp> using the
+<samp>time</samp> command. Run your program on inputs of varying
+numbers of input lines, and estimate the number of comparisons as a
+function of the number of input lines.</p>
+
+<p>Also, write a shell script <samp>sfrobs</samp> that uses standard
+<samp><a href='http://pubs.opengroup.org/onlinepubs/9699919799/utilities/tr.html'>tr</a></samp> and
+<samp><a href='http://pubs.opengroup.org/onlinepubs/9699919799/utilities/sort.html'>sort</a></samp>
+to sort encrypted files using a pipeline (that is, your script should
+not create any temporary files).
+Your shell script should also accept an <samp>-f</samp>
+option, with the same meaning as with <samp>sfrobu</samp>.
+Use the <samp>time</samp> command to compare the overall performance
+of <samp>sfrob</samp>, <samp>sfrobu</samp>, <samp>sfrobs</samp>, <samp>sfrobu
+-f</samp>, and <samp>sfrobs -f</samp>.</p>
+
+<h2>Submit</h2>
+
+<p>Submit a compressed tarball <samp>syscall.tgz</samp> containing
+the following files.</p>
+
+<ul>
+
+<li>The files <samp>lab.txt</samp>, <samp>tr2b.c</samp>, and
+<samp>tr2u.c</samp> as described in the lab.</li>
+
+<li>A single source file <samp>sfrobu.c</samp> as described in the
+homework.</li>
+
+<li>A single shell script <samp>sfrobs</samp> as described in the
+homework.</li>
+
+<li>A text file <samp>sfrob.txt</samp> containing the results of
+your sfrob performance comparison as described in the homework.</li>
+
+</ul>
+
+<p>All files should be ASCII text files, with no
+carriage returns, and with no more than 200 columns per line.
+The C source file should contain no more than 132 columns per line.
+The shell
+commands</p>
+
+<pre><samp>tar xf syscall.tgz
+expand lab.txt sfrob.txt |
+  awk '/\r/ || 200 &lt; length'
+expand tr2b.c tr2u.c sfrobu.c sfrobs |
+  awk '/\r/ || 132 &lt; length'
+</samp></pre>
+
+<p>should output nothing.</p>
+
+
+<hr>
+<address>
+ &copy; 2005, 2007, 2009&ndash;2011, 2013&ndash;2017 <a href='../mail-eggert.html'>Paul Eggert</a>.
+ See <a href='../copyright.html'>copying rules</a>.<br>
+
+ $Id: assign5.html,v 1.34 2017/02/04 22:45:48 eggert Exp $
+
+</address>
+
+</body>
+</html>

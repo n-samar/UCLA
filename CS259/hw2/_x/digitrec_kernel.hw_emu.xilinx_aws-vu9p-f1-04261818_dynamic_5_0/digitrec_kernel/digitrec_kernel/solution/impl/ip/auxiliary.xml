@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="digitrec_kernel" xd:componentRef="digitrec_kernel" xd:initiationInterval="414078" xd:clockPeriod="4.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="*(train_images)" xd:originalName="train_images" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataWidth="64" xd:bufferDirection="in"/>
+  <xd:arg xd:name="*(knn_mat)" xd:originalName="knn_mat" xd:direction="inout" xd:interfaceRef="m_axi_gmem2" xd:busTypeRef="aximm" xd:dataWidth="8" xd:bufferDirection="inout"/>
+  <xd:arg xd:name="test_image" xd:originalName="test_image" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:offset="0x10" xd:handshakeRef="ap_none" xd:dataWidth="64"/>
+  <xd:arg xd:name="train_images" xd:originalName="train_images" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="64" xd:offset="0x1C" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="knn_mat" xd:originalName="knn_mat" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem2" xd:dataWidth="64" xd:offset="0x28" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="414077" xd:worst-case="414077" xd:average-case="414077"/>
+  <xd:resourceEstimates xd:LUT="4275" xd:FF="2889" xd:BRAM="75" xd:DSP="3"/>
+</xd:acceleratorMap>

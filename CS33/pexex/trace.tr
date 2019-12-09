@@ -1,0 +1,101 @@
+547ad0 	48 89 f2		mov    %rsi,%rdx	
+547ad3 	48 89 fe	       	mov    %rdi,%rsi	rsi=2 rdi=2
+547ad6 	bf 02 00 00 00	       	mov    $0x2,%edi	edi=2
+547adb 	e9 f0 fc ff ff	       	jmpq   0x5477d0 <arith_driver>	rip=0x5477d0
+5477d0 	83 ff 02	       	cmp    $0x2,%edi		eflags=[ PF ZF IF ]
+5477d3 	0f 82 4f 02 00 00	jb     0x547a28 <arith_driver+600>	 5477d9
+5477d9 	41 ba 01 00 00 00	mov    $0x1,%r10d			 r10d=1
+5477df 	83 ff 03		cmp    $0x3,%edi			 eflags=[ CF PF AF SF IF ]
+5477e2 	76 10		       	jbe    0x5477f4 <arith_driver+36>	 rip=0x5477f4
+5477f4 	48 85 f6		test   %rsi,%rsi			 eflags=[ IF ]
+5477f7 	0f 8e 7a 02 00 00	jle    0x547a77 <arith_driver+679>
+5477fd 	41 57	       		push   %r15	M8[0x7fffffffd7b8]=0 rsp=0x7fffffffd7b0
+5477ff 	89 f9			mov    %edi,%ecx		     ecx=2
+547801 	45 31 ff		xor    %r15d,%r15d		     r15d=0
+547804 	41 56			push   %r14			     M[0x7fffffffd7a8]=140737488345024 rsp=0x7fffffffd7a8
+547806 	49 89 d6		mov    %rdx,%r14		     r14=140737488345024
+547809 	41 55			push   %r13			     M[0x7fffffffd7a0]=416
+54780b 	49 89 cd		mov    %rcx,%r13		     r13=2
+54780e 	41 54			push   %r12			     M[0x7fffffffd798]=11683176 rsp=0x7fffffffd798
+547810 	49 89 f4		mov    %rsi,%r12		     r12=2
+547813 	55			push   %rbp			     M[0x7fffffffd790]=0xffffd880 rsp=0x7fffffffd790
+547814 	4c 89 d5		mov    %r10,%rbp		     rbp=1
+547817 	53			push   %rbx			     M[0x7fffffffd788]=-10288 rsp=0x7fffffffd788
+547818 	31 db			xor    %ebx,%ebx		     ebx=0
+54781a 	48 83 ec 28		sub    $0x28,%rsp		     rsp=0x7fffffffd760
+54781e 	48 c7 44 24 18 00 00 00 00	movq   $0x0,0x18(%rsp)	     rsp+18=0
+547827 	66 0f 1f 84 00 00 00 00 00	nopw   0x0(%rax,%rax,1)
+547830 	49 8b 3c de	     	mov    (%r14,%rbx,8),%rdi	rdi=5001136962
+547834 	89 f8	 		mov    %edi,%eax		eax=706169666
+547836 	89 fa			mov    %edi,%edx		edx=706169666
+547838 	83 e0 07		and    $0x7,%eax		eax=2
+54783b 	83 f8 01		cmp    $0x1,%eax		eflags=[ IF ]
+54783e 	0f 84 aa 00 00 00	je     0x5478ee <arith_driver+286>	 rip=0x547844
+547844 	89 fa	       		mov    %edi,%edx		edx=706169666
+547846 	83 e2 03		and    $0x3,%edx		edx=2
+547849 	83 fa 02		cmp    $0x2,%edx		eflags=[ PF ZF IF ]
+54784c 	74 38			je     0x547886 <arith_driver+182>	 rip=0x547886
+54784e 	83 f8 07		cmp    $0x7,%eax			 eflags=[ CF AF SF IF ]
+547851 	74 33			je     0x547886 <arith_driver+182>	 rip=0x54788f
+547886 	83 f8 07		cmp    $0x7,%eax
+547889 	0f 84 a1 01 00 00	je     0x547a30 <arith_driver+608>
+54788f 	49 89 3c de		mov    %rdi,(%r14,%rbx,8)	M[0x7fffffffd7c0]=5001136962
+547893 	48 c1 ff 02		sar    $0x2,%rdi		rdi=1250284240
+547897 	41 83 fd 08		cmp    $0x8,%r13d		eflags=[ CF PF AF SF IF ]
+54789b 	77 23	 		ja     0x5478c0 <arith_driver+240>	 rip=054789d
+54789d 	ff 24 cd 60 f5 5e 00	jmpq   *0x5ef560(,%rcx,8)		 rip=0x501690
+5478a4 	0f 1f 40 00	  	nopl   0x0(%rax)
+547998 	48 0f af fd		imul   %rbp,%rdi
+54799c 	0f 90 c0		seto   %al
+54799f 	48 89 fd		mov    %rdi,%rbp
+5479a2 	41 09 c7		or     %eax,%r15d
+5479a5 	e9 16 ff ff ff		jmpq   0x5478c0 <arith_driver+240>
+5479aa 	66 0f 1f 44 00 00	nopw   0x0(%rax,%rax,1)
+5478c0 	48 83 c3 01		add    $0x1,%rbx	rbx=1
+5478c4 	49 39 dc		cmp    %rbx,%r12	eflags=[ IF ]
+5478c7 	7e 57			jle    0x547920 <arith_driver+336>  rip=0x5478c9
+5478c9 	45 84 ff		test   %r15b,%r15b		    eflags=[ PF ZF IF ]
+5478cc 	0f 85 5e ff ff ff	jne    0x547830 <arith_driver+96>   rip=0x5478d2
+5478d2 	49 8b 3c de		mov    (%r14,%rbx,8),%rdi	    rdi=4098
+5478d6 	49 89 ea		mov    %rbp,%r10		    r10=442
+5478d9 	48 89 5c 24 18		mov    %rbx,0x18(%rsp)		    M[0x7ffffffed010+0x18]=1
+5478de 	89 f8	    		mov    %edi,%eax		    eax=1
+5478e0 	89 fa			mov    %edi,%edx		    edx=1
+5478e2 	83 e0 07		and    $0x7,%eax		    eax=2
+5478e5 	83 f8 01		cmp    $0x1,%eax		    eflags=[ IF ]
+5478e8 	0f 85 56 ff ff ff	jne    0x547844 <arith_driver+116>  rip=0x547844
+5478ee 	66 81 7f ff ac 5e	cmpw   $0x5eac,-0x1(%rdi)
+5478f4 	0f 84 66 ff ff ff	je     0x547860 <arith_driver+144>
+547844 	89 fa 	       		mov    %edi,%edx	edx=4098
+547846 	83 e2 03		and    $0x3,%edx	edx=2
+547849 	83 fa 02		cmp    $0x2,%edx	eflags=[ PF ZF IF ]
+54784c 	74 38			je     0x547886 <arith_driver+182>  rip=0x547886
+54784e 	83 f8 07		cmp    $0x7,%eax		    
+547851 	74 33			je     0x547886 <arith_driver+182>
+547886 	83 f8 07		cmp    $0x7,%eax	eflags=[ CF AF SF IF ]
+547889 	0f 84 a1 01 00 00	je     0x547a30 <arith_driver+608>  rip=0x54788f
+54788f 	49 89 3c de		mov    %rdi,(%r14,%rbx,8)	    M[0x7ffffffed080+0x8]=4098
+547893 	48 c1 ff 02		sar    $0x2,%rdi		    rdi=1
+547897 	41 83 fd 08		cmp    $0x8,%r13d		    eflags=[ CF AF	SF IF ]
+54789b 	77 23	 		ja     0x5478c0 <arith_driver+240>  rip=0x54789d
+54789d 	ff 24 cd 60 f5 5e 00	jmpq   *0x5ef560(,%rcx,8)	    rip=0x547980
+5478a4 	0f 1f 40 00	  	nopl   0x0(%rax)
+547998 	48 0f af fd		imul   %rbp,%rdi		    rdi=dfffffffdceaced0
+54799c 	0f 90 c0		seto   %al	al=6		    rax=0
+54799f 	48 89 fd		mov    %rdi,%rbp		    rbp=dfffffffdceaced0
+5479a2 	41 09 c7		or     %eax,%r15d		    r15=0
+5479a5 	e9 16 ff ff ff		jmpq   0x5478c0 <arith_driver+240>  rip=0x5478c0
+5479aa 	66 0f 1f 44 00 00	nopw   0x0(%rax,%rax,1)		    
+5478c0 	48 83 c3 01		add    $0x1,%rbx		    rbx=2
+5478c4 	49 39 dc		cmp    %rbx,%r12		    flags=246
+5478c7 	7e 57			jle    0x547920 <arith_driver+336>  rip=547920
+547920	48 8d 04 ad 02 00 00 00	lea 0x2(,%rbp,4),%rax 		    rax=7fffffff73ab3b42
+547928 	48 83 c4 28		add    $0x28,%rsp		    rsp=7fffffffd748
+54792c 	5b	 		pop    %rbx			    rbx=7fffffffd790 rsp=7fffffffd750
+54792d 	5d			pop    %rbp			    rbp=7fffffffd840 rsp=7fffffffd758
+54792e 	41 5c			pop    %r12			    r12=b24568 
+547930 	41 5d			pop    %r13			    r13=1a0 rsp=7fffffffd768
+547932 	41 5e			pop    %r14			    r14=7fffffffd780 
+547934 	41 5f			pop    %r15			    r15=0 rsp=7fffffffd778
+547936 	c3			retq   				    rip=55ad50 rsp=7fffffffd780
+547937 	66 0f 1f 84 00 00 00 00 00	nopw   0x0(%rax,%rax,1)

@@ -1,0 +1,34 @@
+2. Checkout version 3.0 into new branch quote:
+   	    git checkout -b 'quote' 'v3.0'
+
+3. patch my changes
+   	    patch -p1 < ../Submit/quote-3.0-patch.txt
+
+4. read old ChangeLog into my new one
+   	cat ChangeLog-2008 > ChangeLog
+
+5. emacs ChangeLog C-x 4 a
+
+   And then add this:
+   2017-03-10  Nikola Samardzic <nikola.s@ucla.edu>
+
+        * src/cmp.c:  Changed all cases when the grave accent (`) was printed
+        to printing apostrophy instead (').
+        * src/diff.c: Likewise
+        * src/diff3.c: Likewise
+        * src/dir.c: Likewise
+        * src/sdiff.c: Likewise
+        * src/util.c: Likewise
+	
+6. Commit changes:
+   	git add --all
+	git commit --file=ChangeLog
+
+7. Format new patch:
+   	git format-patch -1 --stdout > formatted-patch.txt
+
+8.
+
+9. The ChangeLog looked as it should. There seems to be a trailing space in
+   the last line of my addition to the change log since a space after it was
+   highlighted red. Should be fine otherwise.

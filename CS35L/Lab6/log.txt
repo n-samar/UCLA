@@ -1,0 +1,49 @@
+1. Checking if the sort version is correct:
+    /usr/local/cs/bin/sort --version
+    This command returns the version 8.26, which is adequate.
+
+2. Now we create a list of random single-precision floating point numbers, 
+   which are floats that take up 4 bytes:
+    od -An -t f4 -N 40000000 </dev/urandom | tr -s ' ' '\n' 
+        | tail -n +2 >list.txt
+    Explanation: first, with </dev/urandom we redirect STDIN to /dev/urandom
+                 second, -An omits the address location in the output (n-none)
+                 third, -t f4 formats output to 4 byte floats
+                 fourth, -N 40000000 will limit output to 40000000 bytes or
+                         10000000 floats.
+                 fifth, we pipe this to tr to translate spaces into new lines
+                 we also squize because the original output has new lines
+                 itself (and some compounded spaces too)
+                 sixth, we omit the first line because it will be a newline,
+                        which we don't need.
+                 finaly, we redirect STDOUT to list.txt
+
+3. Now we run time on just sort -g:
+
+Command:
+    time -p /usr/local/cs/bin/sort -g list.txt >/dev/null
+Result:
+    real 21.81
+    user 112.77
+    sys 0.48
+
+    Applying parallel to sort with --parallel=N where N is thread count
+        1 thread:
+            real 101.41
+            user 101.20
+            sys 0.20
+        2 threads:
+            real 54.41
+            user 103.32
+            sys 0.29
+        4 threads:
+            real 33.09
+            user 110.52
+            sys 0.35
+        8 threads:
+            real 21.09
+            user 114.29
+            sys 0.42
+     Clearly, more threads means more speed. However, the returns of using 
+     more threads aren't linear, but diminishing.
+

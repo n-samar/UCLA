@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"digitrec_kernel_digitrec_kernel": {
+			"proto_instances": {
+			}
+		}
+	}
+}

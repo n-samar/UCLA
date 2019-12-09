@@ -1,0 +1,70 @@
+LAB LOG:
+
+My team and I booted Ubuntu from the disk provided in class and connected
+to the same local network.
+Installing OpenSSH:
+
+    sudo apt-get install openssh-server
+    sudo apt-get install openssh-client
+
+This will install all the components necessary for us to run OpenSSH for this
+assignment.
+
+Now, let's set up the server:
+
+We run
+
+    ssh-keygen
+
+to generate the public/private keys we will use. Since this is an excercise,
+I didn't add a password (just pressed enter) and put the keys in the default
+directory (/home/nikola/.ssh/id_rsa).
+
+Then we used ifconfig to find our ip addresses. This will be the IP address
+starting with 10. under the first inet addr.
+
+Now, I add accounts that my teammates will login to:
+
+sudo useradd -d /home/ryan -m ryan
+sudo passwd ryan
+
+(Change password to cs35l)
+
+sudo mkdir /home/ryan/.ssh
+cd /home/ryan
+sudo chown -R ryan .ssh
+sydo chmod 700 .ssh
+
+And same for Priyanka, but using the usernama priyanka. These last 4 lines
+create a .ssh directory for each of my teammates, give them the ownership
+over this directory (chown), and I also give permission
+for them to write on them (chmod 700).
+
+Now the server is set up and I describe what to do as client. I will explain
+only how I logged into ryan's server, since the steps for Priyanka were
+analougus:
+
+In order to access my account on Ryan's computer I need to send my public key
+to it:
+
+   ssh-copy-id -i nikola@<partner's IP>
+
+Ryan set up the password for my account: cs35l. I use it when prompted.
+
+Then I enter
+
+ssh-add
+
+in order to provide my private key to the ssh-agent. Now I can SSH into Ryan's
+computer using the '-X' option to allow for port forwarding (this allows us to
+use xterm). Now when I log in with
+
+ssh -X nikola@<partner's IP>
+
+and then type xterm we see a shell window on the host machine.
+
+ISSUES WE ENCOUNTERED:
+
+- We tried using VirtualBox, this ended up not being very fruitful.
+- We had to try using several IPs (since ifconfig outputed plenty). Eventually,
+we realized which on to use.

@@ -1,0 +1,21 @@
+ASSIGNMENT 7 - HOMEWORK:
+
+1) The whole point of SSH is to prevent people tapping data by reading it
+'in the middle'. All data between the two endpoints will be encrypted and
+wouldn't be interpretable without the keys.
+
+   Tapping the keyboard would be problematic since the enemy would be able
+to pick up passwords that we used when creating the keys using ssh-keygen.
+However, if the keyboard was tapped after we created the ssh keys, then
+our information could be saved since we never type our private/public keys
+through the keyboard, and we don't even type our passwords for the accounts
+since we are using ssh-agent.
+
+   Physical control of the USB wouldn't compromise any data since the USB
+would only contain a .iso file used to boot Ubuntu. However, if we were to
+everything that we saved onto the USB would be compromised, ofcourse. Saving
+our keys to the USB therefore would not be smart. Also, there are probably
+ways to introduce viruses or other malware into the computer through the USB
+that would increase enemy's control of the computer, but I do not know
+anything about how that works and it is probably beyond the scope of the
+assignment.

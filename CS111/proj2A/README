@@ -1,0 +1,195 @@
+			  ___________________
+
+			   PROJECT 2A README
+
+			    Nikola Samardzic
+			  ___________________
+
+
+NAME: Nikola Samardzic
+EMAIL: nikola.s@ucla.edu
+ID: 904799099
+
+NOTE: Running the sanity check passes all tests except the make
+dist. The make dist test case returns
+
+,----
+| ERROR: make dist did not produce lab2a-904799099.tar.gz
+`----
+
+I copied the contents of the sanity checker up to the 'make dist' call
+into a different file and ran that file and then manually executed the
+'make dist' command. This produced the lab2a-905799099.tar.gz file just
+fine. All needed files are in there and everything works as
+expected. Please consider reconsidering the result from the sanity
+checker in this case.
+
+Result of executing add-none on different thread number and iteration
+size:
+
+          5   10   20 
+----------------------
+   100  0.6  0.9  1.0 
+  1000  0.7  0.2  0.3 
+ 10000  0.0  0.2  0.0 
+
+In the table, the first column represents the number of iterations
+specified, while the first row represents the number of threads
+specified. All other cells represent the ratio of the number of times
+the execution resulted in a total sum of 0 to the total number of
+executions. Each option was executed 10 times.
+
+
+1 Questions
+===========
+
+1.1 QUESTION 2.1.1 - causing conflicts:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  - Why does it take many iterations before errors are seen?
+  - Why does a significantly smaller number of iterations so seldom
+    fail?
+
+  For an error to be recognized, a thread needs to load the resource
+  while another thread is modifying it in its own buffer. This is fairly
+  improbable. So, if there are many iterations, there is more time for
+  threads to step on eachother and for the improbable to become
+  probable.
+
+  Answer to second question is the same as the answer to the first: For
+  an error to be recognized, a thread needs to load the resource while
+  another thread is modifying it in its own buffer. This is fairly
+  inprobable.
+
+
+1.2 QUESTION 2.1.2 - cost of yielding:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  - Why are the --yield runs so much slower?
+  - Where is the additional time going?
+  - Is it possible to get valid per-operation timings if we are using
+    the --yield option?
+  - If so, explain how. If not, explain why not.
+
+  The --yield runs are slower because every time each thread calls add()
+  the thread yields and gives control back to the scheduler (from the
+  shed_yield(2) man page: The thread is moved to the end of the queue
+  for its static priority and a new thread gets to run). The additional
+  cost of the extra scheduling and context switching causes a noticable
+  overhead in the execution time.  We cannot get valid per-operaton
+  timings, because the sched_yield() causes unpredictable waiting time,
+  and overhead that significantly impacts the performance results of the
+  execution.
+
+
+1.3 QUESTION 2.1.3 - measurement errors:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  - Why does the average cost per operation drop with increasing
+    iterations?
+  - If the cost per iteration is a function of the number of iterations,
+    how do we know how many iterations to run (or what the "correct"
+    cost is)?
+
+  At first, the MLFQ scheduler will add our process to the I/O bound
+  queue.  This, of course, is a mistake, but it takes the OS some time
+  to realize this. After the OS realizes that the process is CPU bound,
+  it changes its queue and the process spends a lot more time running vs
+  waiting for non-existant I/O. If the number of iterations is small,
+  the OS won't have time to change queues on the process. The greater
+  the number of iterations, the more the process spends running in CPU
+  time, which decreases add() latency.
+
+  We can see the function tapper off with time and the iteration cost
+  stabilizes.  When we see output stabilize, this is the real
+  cost. Also, we could just disregard all the data from the beginning
+  and look at the cost of later iterations because they represent the
+  real cost.
+
+
+1.4 QUESTION 2.1.4 - costs of serialization:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  - Why do all of the options perform similarly for low numbers of
+    threads?
+  - Why do the three protected operations slow down as the number of
+    threads rises?
+
+  All options perform similarly for low number of threads because
+  reasources rarely block. All the options have nearly identical code if
+  we discount the way they deal with collisions on reasources. When you
+  don't have a lot of threads running, you don't have a lot of these
+  collisions.
+
+  The bigger the number of threads the more threads have to wait for
+  other threads to finish modifying the counter. Although there are
+  three different options we used to implement this waiting mechanism,
+  the fact remains that one way or another the threads must wait.
+
+
+1.5 QUESTION 2.2.1 - scalability of Mutex
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  - Compare the variation in time per mutex-protected operation vs the
+    number of threads in Part-1 (adds) and Part-2 (sorted lists).
+  - Comment on the general shapes of the curves, and explain why they
+    have this shape.
+  - Comment on the relative rates of increase and differences in the
+    shapes of the curves, and offer an explanation for these
+    differences.
+
+  The list version looks more like a line (i.e. linear function), while
+  the add version is linear, but tappers off after 4 threads and becomes
+  linear. It is obvious that latency (i.e. operation cost) goes up with
+  the number of threads, since they must wait on eachother so that they
+  don't step on eachother's toes.  First of all, notice that the incline
+  of the add version is bigger, i.e.  latency gets worst faster than in
+  the list version. This is because threads will threads will spend more
+  time waiting in the add section since setting them up is very easy. At
+  some point, threads are just waiting most of the time, i.e. each
+  iterations spends time on four things: checking if the mutex is free
+  and being rejected, being woken up and locking the mutex, actually
+  performing the iteration, unlocking the mutex. From this point on, the
+  latency cannot get any worst.
+
+  The list case never reaches this worst-case situation, i.e. sometimes
+  even for a large number of threads, the program gets to instantly
+  enter the lock and avoid performing all four of the above actions per
+  opertation. However, the more threads we have, the more probable the
+  worst-case is, which is why we see a steady linear curve.
+
+
+1.6 QUESTION 2.2.2 - scalability of spin locks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  - Compare the variation in time per protected operation vs the number
+    of threads for list operations protected by Mutex vs Spin
+    locks. Comment on the general shapes of the curves, and explain why
+    they have this shape.
+  - Comment on the relative rates of increase and differences in the
+    shapes of the curves, and offer an explanation for these
+    differences.
+
+  The spin locks, in contrast to the mutex lock, get worst and worst
+  forever. This is because threads that are waiting actively sink up
+  reasorces by spinning without doing any meaningful work. For a small
+  number of threads the list version is fairly linear which is because
+  threads mostly do not spin a lot since they do not have many other
+  threads to wait on. Eventually, there are enough threads that most of
+  their lifetime threads are just waiting while only one thread is doing
+  meaningful work. This means that only 1/n of the time the processor is
+  doing meaningful work. An average thread will have n threads in front
+  of it when it comes to wait on the lock. The time for one thread to
+  exit the resource will be n times bigger than in simple sequential
+  execution, so iteration cost starts to get quadratically dependant on
+  the number threads running. This is really bad.
+
+  Similar issue is seen in add (we can just see the curve start to blast
+  off quadratically).
+
+  Note that in both cases spin locks are better for single-threaded and
+  very close for double-threaded programs. This implies that spin locks
+  might be a better solution if we expect very small waiting times for
+  threads. This is because the overhead of setting up a mutex is more
+  than the additional spinning of the spin locks. This does not hold up
+  for long though.

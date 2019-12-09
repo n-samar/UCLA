@@ -1,0 +1,73 @@
+2. Look at the implementation of insert(const ItemType&). It contains
+    comparisons of ItemType variables:
+
+        for (p = m_head->m_next, pos = 0; p != m_head  &&
+                value > p->m_value; p = p->m_next, pos++)
+
+    since the Complex class does not have an implementation of a comparison
+    operator, we get a bug.
+
+    The insert(int, const ItemType&) never compares two ItemTypes and is
+    therefore safe.
+
+3. b If we only had one MenuItem* parameter to listAll we wouldn't be able to
+     know the path to that specific MenuItem because the classes as implemented
+     to not provide any pointers or references to MenuItems hierarchicaly above
+     them.
+
+4. a The algorithm runs in O(n^3) time. This is because we have to find the
+     number of mutual friends for all pairs of people. There is a total of
+     order n^2 ordered pairs of people (n*(n-1) exactly). For a fixed pair
+     of people (i, j) our algorithm checks if i is a friend with k, and
+     k is a friend with j for every k. Since there are n people we know that
+     we need O(n) operations to find the number of mutual friends between
+     each pair. Since there is n^2 pairs this is a total of O(n^3).
+
+4. b This algorithm runs in O(n^3) time. The number of unordered pairs
+     (which is what we need for this algo) is n*(n-1)/2 which is again order
+     O(n^2). For a fixed pair, we need n comparisons again to establish the
+     number of friends (order O(n)). This gives a total of O(n^3).
+
+5. a First bit of code that accesses ItemTypes is this snippet:
+
+     	       for (int k = 0; k < nmin; k++)
+    	       {
+			ItemType v;
+        		seq1.get(k, v);
+        		res.insert(resultPos, v);
+        		resultPos++;
+        		seq2.get(k, v);
+        		res.insert(resultPos, v);
+        		resultPos++;
+    		}
+
+     Every get and insert takes O(n) time.
+     This gives us 4*n*n total (O(n^2)).
+     The second for loop is only executed if one list is bigger
+     than the other, which is not true in our case, so we can ignore. More pre-
+     cicely, this part will again take O(n^2) time in the general case because
+     we have a get inside a for loop that runs O(n) times.
+     The line
+     
+     	 result.swap(res);
+
+      takes constant time (swaps pointers). Adding all these together we get
+      O(n^2).
+
+5. b Same as before, we can ignore the second for loop and focus on the first:
+
+     	      for ( ; p1 != seq1.m_head  &&  p2 != seq2.m_head;
+                                            p1 = p1->m_next, p2 = p2->m_next)
+    	      {
+			res.insertBefore(res.m_head, p1->m_value);
+        		res.insertBefore(res.m_head, p2->m_value);
+    	      }
+
+     p1->m_value and p2->m_value both access the values of ItemTypes. This is
+     2 accesses per loop body execution and a total of 2*n which is O(n).
+     The insertBefore function runs in O(1) time (only exchanges pointers).
+     Again, since swap(res) runs in O(1) and since we can ignore the second
+     for loop completely we have O(n) time complexity.
+     Just in case you need this, the second for loop will run in O(n) time.
+     This is bacause the contents of the for loop is executed O(n) times and
+     insertBefore takes O(1) time.

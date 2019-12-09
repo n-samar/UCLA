@@ -1,0 +1,117 @@
+3. Testing strace:
+cat site.txt | strace -o traceB1 ./tr2b abc xyz
+cat site.txt | strace ./tr2u -o traceU1 abc xyz
+cat site.txt | strace ./tr2b -o traceB2 abc xyz > junk
+cat site.txt | strace ./tr2u -o traceU2 abc xyz > junk
+
+where site.txt is obtained by
+
+curl http://web.cs.ucla.edu/classes/winter17/cs35L/assign/assign5.html > site.txt
+
+and represents the assignment’s html.
+
+Also,
+
+Curl Anna Karenina 3 times (append 2 times) for testing:
+curl http://www.gutenberg.org/files/1399/1399-h/1399-h.htm > anna.txt
+curl http://www.gutenberg.org/files/1399/1399-h/1399-h.htm >> anna.txt
+curl http://www.gutenberg.org/files/1399/1399-h/1399-h.htm >> anna.txt
+
+This file's size is about 6.4 MB
+
+Check size of anna.txt file: ls -lh
+
+ I compared traces of tr2b and tr2u against the assignment html, and I added
+arguments abd xyz. I noticed that tr2b calls write on more than 1 character.
+Namely, it reads thousands of characters at once
+ into a buffer and than pulls the chars from this buffer using getchar(). 
+For example: 
+	read(0, " regular file grows while you ar"..., 4096) = 3379
+While tr2u does the following:
+	read(1, "\n", 1)                       = 1
+i.e. reads char by char without a buffer.
+
+Looking at the trace when we tr onto the terminal, we see also that tr2u writes
+a char right after it reads it. Example:
+	read(0, "l", 1)                         = 1
+	write(1, "l", 1)                        = 1
+
+On the other hand tr2b writes line by line, and can write without 
+reading as long as the buffer is not empty. Example:
+	read(0, " regular file grows while you ar"..., 4096) = 3379
+	write(1, "the regulxr file grows while you"..., 69) = 69
+	write(1, "still work, yy xllozxting more m"..., 70) = 70
+	write(1, "yeen rexd.</p>\n", 15)        = 15
+	write(1, "\n", 1)                       = 1
+
+tr2u works the same when writing to file as when writing onto the terminal.
+On the other hand, tr2b has an even shorter strace when writing to file than 
+when writing to terminal. It seems to call read only 2 times and writes to file
+exactly once at the end. This is significantly shorter than the terminal output 
+case.
+
+4. Command used for comparison: time
+	./tr2b "abc" "xyz" < anna.txt > output1.txt
+	./tr2u "abc" "xyz" < anna.txt > output1.txt
+	
+
+Time for tr2b to execute the command:
+real	0m0.253s
+user	0m0.178s
+sys	0m0.012s
+
+Time for tr2u to execute the command:
+real	0m8.348s
+user	0m0.375s
+sys	0m7.910s
+
+PERFORMANCE MEASURMENTS:
+FILE WITH SIZE OF 6.4MB:
+LINE COUNT: 1095324
+	sfrobu:
+	9.75 real         2.00 user         7.17 sys
+	sfrob:
+	1.67 real         1.29 user         0.15 sys
+CURL OF http://www.gutenberg.org/files/54137/54137-h/54137-h.htm:
+LINE COUNT: 139244
+	sfrobu:
+	1.45 real         0.25 user         1.05 sys
+	sfrob:
+	0.24 real         0.17 user         0.02 sys
+CURL OF ASSIGNMENT WEBPAGE:
+LINE COUNT: 850
+	sfrobu:
+	0.01 real         0.00 user         0.00 sys
+	sfrob:
+	0.00 real         0.00 user         0.00 sys
+
+NOTE: The line count here is actually the word count here, because the programs 
+	assume the strings are frobnicated.
+
+qsort is n*log n efficiency. frobcmp on average compares only 
+the first two chars, since they are usually different. Therefore, for n words, 
+we would need something over n*log n comparisons dependent on how similar 
+the frobnicated words are.
+
+Using python I created a string of frobnicated chars so that n-th char in 
+sequence corresponds to the code of char with ASCII value n. The python
+code:
+v = []
+for i in range(0,255):
+    v.append("\\" + oct(i^42))
+print("".join(v))
+
+I lend permission to sfrobs to be executed with chmod +x.
+
+Performance on anna.txt:
+
+sfrobu:
+9.75 real         2.00 user         7.17 sys
+sfrobs:
+17.36 real        18.08 user         0.33 sys
+sfrob:
+1.67 real         1.29 user         0.15 sys
+sfrobu -f:
+10.97 real         2.25 user         7.59 sys
+sfrobs -f:
+2.61 real         2.26 user         0.23 sys

@@ -1,0 +1,40 @@
+2. First twelve cells explored by stack: 
+1: (6, 4)
+2: (6, 3)
+3: (6, 5)
+4: (7, 5)
+5: (8, 5)
+6: (8, 6)
+7: (8, 7)
+8: (8, 8)
+9: (7, 8)
+10: (6, 6)
+11: (5, 4)
+12: (4, 4)
+
+4. First twelve cells explored by queue:
+1: (6, 4)
+2: (5, 4)
+3: (6, 5)
+4: (6, 3)
+5: (4, 4)
+6: (6, 6)
+7: (7, 5)
+8: (3, 4)
+9: (4, 5)
+10: (8, 5)
+11: (2, 4)
+12: (4, 6)
+
+The difference between stack and queue in this problem:
+    The basic difference is that the stack implements a depth first search 
+    algorithm, while the queue implements a breadth first search algorithm.
+    Namely, BFS will first visit all neighbours of the root node (since the
+    nodes closest the the root enter the queue first) and then start 
+    examining neighbours of the neighbours.
+    	      Conversely, the stack implementation will go into the last node
+    added first. If the last node we add to the stack is north of the root
+    for example, then we will first visit that node - then the last node
+    we add to that node will be its north node, which will be the first one we
+    visit. This implies that we will firstly go as north as possible and then
+    go back only as long as we are not able to create a new move. This is DFS.

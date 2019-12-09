@@ -1,0 +1,28 @@
+			  ___________________
+
+			   PROJECT 3A README
+
+			    Nikola Samardzic
+			  ___________________
+
+
+NAME: Nikola Samardzic
+EMAIL: nikola.s@ucla.edu
+ID: 904799099
+
+
+1 Description of included files
+===============================
+
+  - README: This README
+  - lab3a.c: My implementation of Project 3A in C
+  - Makefile: Includes directives as discribed in the project spec.
+
+
+2 Testing
+=========
+
+  The spec suggests that we use the "0%o" format for the mode.  However,
+  this is contradictory to the trivial.csv file.  I have decided to
+  comply with trivial.csv because it is required that the output be
+  identical to it.

@@ -1,0 +1,24 @@
+NAME: Nikola Samardzic
+EMAIL: nikola.s@ucla.edu
+ID: 904799099
+
+Sanity Check:
+
+I understand the program does not pass the sanity check, but it does pass every
+one of the test cases! The final output of the sanity check is "FAILS sanity
+check with 0~ errors!". Looking at each of the testcases, you can see that the
+code passes them. I was unable to debug the issue that causes the error counter
+in the sanity checker to get a tilde appended to it.
+
+Smoke tests:
+- OK_exit_code: checks that the exit code upon success is correct and that 
+  the function succeds when it should.
+- standard: tests that the input and output match when the function is 
+  suppose to succed.
+- input_redirect: checks that the --input flag works properly.
+- output_redirect: checks that the --output flag works properly.
+- segfault_test: checks that the segmentation fault is caught when both
+  --segfault and --catch flags are activated.
+- segflt: Checks that the error code is set to SIGSEGV when --segfault is set
+  without --catch.
+

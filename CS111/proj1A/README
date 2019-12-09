@@ -1,0 +1,6 @@
+NAME: Nikola Samardzic
+EMAIL: nikola.s@ucla.edu
+ID: 904799099
+
+Bugs:
+- The sanity check produces an orphan process.
